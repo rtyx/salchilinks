@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>LINKS LINKS LINKS</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="angular.js"></script>
+
+    </head>
+
+    <body ng-app="myApp">
+        <div class="header">
+            <a href="/">
+                <h1>LINKS LINKS LINKS</h1>
+            </a>
+        </div>
+        <div ng-controller="index">
+            <div ng-repeat="link in index">
+                <div class="linkBox">
+                    <!-- <div class="position">
+                        {{link.position}}
+                    </div> -->
+                    <a href="{{link.url}}">{{link.title}}</a>
+                    <div class="adminAuthor">
+                        <b>{{link.author}}</b>
+                    </div>
+                    <div class="timeStamp">
+                        <i>{{link.timeStamp}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
