@@ -6,7 +6,7 @@ CREATE TABLE links (
     id SERIAL primary key,
     user_id INT references users(id),
     link VARCHAR(255) not null,
-    title VARCHAR(255),
+    title VARCHAR(255) not null,
     CreateDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -19,7 +19,8 @@ CREATE TABLE users (
 
 CREATE TABLE comments (
     id SERIAL primary key,
-    user_name VARCHAR(255) not null,
+    user_id INT references users(id),
+    link_id INT references links(id),
     comment VARCHAR(255),
     CreateDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
