@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const aux = require('../SQL/aux.js');
+const aux = require('../SQL/aux.js');
 
 // HOME
 
@@ -13,11 +13,8 @@ router.route('/home')
     });
 
 router.route('/register')
-    .get(function(req, res) {
-        blablabla
-    })
     .post(function(req, res) {
-
+        aux.registerUser(req.body.user_name, req.body.email, req.body.password);
     });
 
 // router.get('/index', function (req,res) {

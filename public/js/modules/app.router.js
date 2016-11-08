@@ -22,12 +22,14 @@
                 templateUrl: 'js/modules/register/register.html',
                 controller: 'registerCtrl',
                 controllerAs: 'register'
+            })
+
+            .state('login', {
+                url: '/login',
+                templateUrl: 'js/modules/login/login.html',
+                controller: 'loginCtrl',
+                controllerAs: 'login'
             });
-            //
-            // .state('login', {
-            //     url: '/login',
-            //     templateUrl: 'login.html'
-            // });
             //
             // .state('upload', {
             //     url: '/upload',

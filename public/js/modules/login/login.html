@@ -1,0 +1,23 @@
+<div class="form-logIn">
+		<img id="login-background" src="login-background.png" width="80%" height="116%"></img>
+		<div id="form-background">
+			<div id="sign-in">Sign in </div>
+				<form class="logIn">
+						<div id="name">
+							<label>User Name</label>
+							<br>
+							<input ng-model="login.user.name" id="name-login"class="input-login" type="text">
+							</br>
+						</div>
+						<div id="password">
+							<label>Password</label>
+							<br>
+							<input ng-model="login.user.password" id="password-login" class="input-login" type="password">
+							</br>
+						</div>
+						<button ng-click="login.login(login.user.name, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Sign Up</button>
+				</form>
+			<div id="login-click">Register<a href=".form-register">Clicking here</a></div>
+			<div id="close-form">X</div>
+		</div>
+	</div>

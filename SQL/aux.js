@@ -1,11 +1,17 @@
 const chalk = require('chalk');
 const db = require('./db.js');
+const hash = require('./hash.js');
 
 module.exports = {
-    saveImage: function (data) {
-        console.log(chalk.blue("Saving image..."));
-        return db.usedb('INSERT INTO links (url, author, title, description, hashtags) VALUES ($1, $2, $3, $4, $5) RETURNING id;', [data.url, data.author, data.title, data.description, data.hashtags]);
-    },
+    registerUser: function (user_name, email, password) {
+        hash.hashPassword(password).then(function(hashedPassword){
+            console.log(chalk.blue("Registering user..."));
+            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
+        });
+
+
+    }
+}
     // getImage: function(id) {
     //     console.log(chalk.blue("Getting image (" + id + ") from the server..."));
     //     return db.usedb('SELECT * FROM images WHERE id = $1;', [id]);
@@ -42,4 +48,3 @@ module.exports = {
     //     console.log(chalk.blue("Deleting comments in image (" + imageid + ") from the server..."));
     //     return db.usedb('DELETE FROM comments WHERE imageid = $1;', [imageid]);
     // },
-};

@@ -10,5 +10,7 @@
             // Custom modules.
             'app.router',
             'app.home',
+            'app.register',
+            'app.login'
         ]);
 })();
