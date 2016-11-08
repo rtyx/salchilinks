@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const aux = require('./aux.js');
+// const aux = require('../SQL/aux.js');
 
-//HOME
+HOME
 
 router.route('/home')
     .get(function(req, res) {
@@ -17,7 +17,7 @@ router.route('/register')
         blablabla
     })
     .post(function(req, res) {
-        blablabla
+
     });
 
 // router.get('/index', function (req,res) {

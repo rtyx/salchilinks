@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/routes.js');
 const chalk = require('chalk');
 
-// app.use(express.static())
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
@@ -13,6 +11,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/', routes);
+
+app.use(express.static('public'));
 
 app.listen(8080, function () {
     console.log(chalk.blue('Listening on port 8080!'));

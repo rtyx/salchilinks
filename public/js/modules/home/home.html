@@ -1,0 +1,48 @@
+<div ng-controller="homeCtrl as home">
+    <div class="linksIndex">
+        <div class="card uploadButton">
+            <div class="cardPosition uploadText">0</div>
+            <div class="cardLink uploadText">your link</div>
+            <div class="cardUser uploadText">
+                your username
+            </div>
+            <div class="cardTags uploadText">
+                #tags
+            </div>
+        </div>
+        <div ng-repeat="link in home.data">
+            <div class="card" ng-click="home.changeActiveLink(link)">
+                <div class="cardPosition">{{$index +1}}</div>
+                <a class="cardLink" href="{{link.url}}">{{link.title}}</a>
+                <div class="cardUser">
+                    {{link.author}}
+                </div>
+                <div class="cardTags">
+                    #{{link.tags}} -
+                </div>
+                <div class="cardComments">
+                    420 comments -
+                </div>
+                <div class="cardTime">
+                    23h ago
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="activeLink">
+        <div class="activeTitle">
+            {{home.activeLink.title}}
+        </div>
+        <div class="activeUser">
+            {{home.activeLink.author}}
+        </div>
+        <div class="activeTags">
+            #{{home.activeLink.tags}}
+        </div>
+        <div class="activeTime">
+            {{home.activeLink.timestamp}}
+        </div>
+        <div class="activeCommentsBox">
+        </div>
+    </div>
+</div>
