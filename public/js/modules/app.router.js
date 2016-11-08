@@ -1,10 +1,10 @@
 (function(){
 
-    console.log("ROUTER IS HERE");
+    console.log("Loading router...");
 
-    var routerApp = angular.module('routerApp', ['ui.router']);
-
-    routerApp.config(function($stateProvider, $urlRouterProvider) {
+    angular
+        .module('app.router', ['ui.router'])
+        .config(function($stateProvider, $urlRouterProvider) {
 
         // $urlRouterProvider.otherwise('/home');
 
@@ -12,12 +12,16 @@
 
             .state('home', {
                 url: '/home',
-                templateUrl: 'js/modules/home/home.html'
+                templateUrl: 'js/modules/home/home.html',
+                controller: 'homeCtrl',
+                controllerAs: 'home'
             })
 
             .state('register', {
                 url: '/register',
-                templateUrl: 'js/modules/register/register.html'
+                templateUrl: 'js/modules/register/register.html',
+                controller: 'registerCtrl',
+                controllerAs: 'register'
             });
             //
             // .state('login', {
@@ -35,5 +39,5 @@
             //     templateUrl: 'profile.html'
             // });
 
-    });
+        });
 })();

@@ -1,5 +1,6 @@
-<div ng-controller="homeCtrl as home">
+<!-- <div ng-controller="homeCtrl as home"> -->
     <div class="linksIndex">
+        <button ng-click="home.sayhey()">say hey</button>
         <div class="card uploadButton">
             <div class="cardPosition uploadText">0</div>
             <div class="cardLink uploadText">your link</div>
@@ -11,7 +12,7 @@
             </div>
         </div>
         <div ng-repeat="link in home.data">
-            <div class="card" ng-click="home.changeActiveLink(link)">
+            <div class="card" ng-click="changeActiveLink(link)">
                 <div class="cardPosition">{{$index +1}}</div>
                 <a class="cardLink" href="{{link.url}}">{{link.title}}</a>
                 <div class="cardUser">
@@ -45,4 +46,4 @@
         <div class="activeCommentsBox">
         </div>
     </div>
-</div>
+<!-- </div> -->

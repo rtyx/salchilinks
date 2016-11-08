@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // const aux = require('../SQL/aux.js');
 
-HOME
+// HOME
 
 router.route('/home')
     .get(function(req, res) {

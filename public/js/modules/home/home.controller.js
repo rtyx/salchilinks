@@ -1,14 +1,22 @@
 (function() {
     angular
-        .module("homeApp")
-        .controller("homeCtrl", HomeController);
+        .module("app.home")
+        .controller("homeCtrl", homeControl);
 
-        function HomeController() {
+        homeControl.$inject = ['$http']
+
+        function homeControl($http) {
             var vm = this;
             vm.data = linksData;
 
             vm.activeLink = {};
             vm.changeActiveLink = changeActiveLink;
+
+            vm.sayhey = sayhey;
+
+            function sayhey() {
+                console.log("hey");
+            }
 
             function changeActiveLink(index) {
                 vm.activeLink = index;
