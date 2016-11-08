@@ -5,9 +5,10 @@ DROP TABLE IF EXISTS comments;
 CREATE TABLE links (
     id SERIAL primary key,
     user_id INT references users(id),
-    link VARCHAR(255) not null,
+    link TEXT not null,
     title VARCHAR(255) not null,
-    CreateDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    comments INT,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE users (
@@ -22,5 +23,5 @@ CREATE TABLE comments (
     user_id INT references users(id),
     link_id INT references links(id),
     comment VARCHAR(255),
-    CreateDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
