@@ -3,19 +3,19 @@
 		<div id="form-background">
 			<div id="sign-in">Sign in </div>
 				<form class="logIn">
-						<div id="name">
-							<label>User Name</label>
-							<br>
-							<input ng-model="login.user.name" id="name-login"class="input-login" type="text">
-							</br>
-						</div>
+						<div id="login-email">
+					      	<label>Email</label>
+					      	<br>
+					      	<input ng-model="login.user.email" id="email-login" class="input-login" type="email">
+					    	</br>
+					  	</div>
 						<div id="password">
 							<label>Password</label>
 							<br>
 							<input ng-model="login.user.password" id="password-login" class="input-login" type="password">
 							</br>
 						</div>
-						<button ng-click="login.login(login.user.name, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Sign Up</button>
+						<button ng-click="login.login(login.user.email, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Sign Up</button>
 				</form>
 			<div id="login-click">Register<a href=".form-register">Clicking here</a></div>
 			<div id="close-form">X</div>

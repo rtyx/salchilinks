@@ -7,18 +7,16 @@
 
         function loginControl($http) {
             var vm = this;
-            vm.login = function(user_name, password) {
-                console.log(user_name, password);
-            //   var config = {
-            //     method: 'POST',
-            //     data: {
-            //         user_name: user_name,
-            //         email: email,
-            //         password: password
-            //     },
-            //     url: '/register'
-            //   }
-            //   $http(config)
+            vm.login = function(email, password) {
+              var config = {
+                method: 'POST',
+                data: {
+                    email: email,
+                    password: password
+                },
+                url: '/login'
+              }
+              $http(config)
             }
         }
 })();

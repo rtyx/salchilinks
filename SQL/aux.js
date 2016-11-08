@@ -8,18 +8,31 @@ module.exports = {
         return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
     insertLink: function (user_id, url, title) {
-        console.log(chalk.blue("Getting links..."));
+        console.log(chalk.blue("Inserting links..."));
         return db.usedb('INSERT INTO links (user_id, url, title) VALUES ($1, $2, $3) RETURNING id;', [user_id, url, title]);
     },
     registerUser: function (user_name, email, password) {
         hash.hashPassword(password).then(function(hashedPassword){
             console.log(chalk.blue("Registering user..."));
+            console.log(user_name + email + hashedPassword);
             return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
         });
     },
     logInUser: function(email, password) {
         console.log(chalk.blue("Logging " + email + " in..."));
-        ////
+        hash.hashPassword(password).then(function(hashedPassword){
+            console.log(hashedPassword);
+            db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
+                console.log('typed pass ' + hashedPassword);
+                console.log('db pass ' + userInfo.rows[0].password);
+                hash.checkPassword(userInfo.rows[0].password, hashedPassword).then(function(passMatch){
+                    if(passMatch){
+                        console.log('matched'); // problem is the salt always changes so passwords don't match. Set up constant salt ?
+                    }
+                })
+            })
+        })
+
     },
     getProfile: function(id) {
         console.log(chalk.blue("Getting " + user + " profile..."));
