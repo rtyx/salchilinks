@@ -1,38 +1,69 @@
 const express = require('express');
 const router = express.Router();
-// const aux = require('../SQL/aux.js');
+const aux = require('../SQL/aux.js');
 
 // HOME
 
 router.route('/home')
     .get(function(req, res) {
-        blablabla
-    })
-    .post(function(req, res) {
-        blablabla
+        aux.getLinks()
+        .then(function(response) {
+            res.json(response.rows);
+        })
+        .catch(function(error) {
+            console.log(error(error));
+            res.json({
+                success: false,
+                reason: error
+            });
+        });
     });
 
 router.route('/register')
-    .get(function(req, res) {
-        blablabla
-    })
     .post(function(req, res) {
-
+        // [user, email, password] = [req.body.user, req.body.email, req.body.password];
+        aux.registerUser(req.body.user, req.body.email, req.body.password)
+        .then(function(response) {
+            res.json(response.rows);
+        })
+        .catch(function(error) {
+            console.log(error(error));
+            res.json({
+                success: false,
+                reason: error
+            });
+        });
     });
 
-// router.get('/index', function (req,res) {
-//     var count = req.query.count;
-//     aux.getImages(count)
-//     .then(function(response){
-//         res.json(response.rows);
-//     })
-//     .catch(function(error){
-//         console.log(error(error));
-//         res.json({
-//             success: false,
-//             reason: error
-//         });
-//     });
-// });
+router.route('/login')
+    .post(function(req, res) {
+        aux.logInUser(req.body.email, req.body.password)
+        .then(function(response) {
+            res.json(response.rows);
+        })
+        .catch(function(error) {
+            console.log(error(error));
+            res.json({
+                success: false,
+                reason: error
+            });
+        });
+    });
+
+router.route('/profile/:user')
+    .get(function(req, res) {
+        var user = req.query.user;
+        aux.getProfile(user)
+        .then(function(response) {
+            res.json(response.rows);
+        })
+        .catch(function(error) {
+            console.log(error(error));
+            res.json({
+                success: false,
+                reason: error
+            });
+        });
+    });
 
 module.exports = router;
