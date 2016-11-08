@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS comments;
 CREATE TABLE links (
     id SERIAL primary key,
     user_id INT references users(id),
-    link TEXT not null,
+    url TEXT not null,
     title VARCHAR(255) not null,
     comments INT,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

@@ -7,6 +7,10 @@ module.exports = {
         console.log(chalk.blue("Getting links..."));
         return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
+    insertLink: function (user_id, url, title) {
+        console.log(chalk.blue("Getting links..."));
+        return db.usedb('INSERT INTO links (user_id, url, title) VALUES ($1, $2, $3) RETURNING id;', [user_id, url, title]);
+    },
     registerUser: function(user, email, password) {
         // hash.hashPassword(password).then
         console.log(chalk.blue("Registering user..."));
