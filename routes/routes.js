@@ -6,7 +6,7 @@ const aux = require('../SQL/aux.js');
 
 router.route('/home')
     .get(function(req, res) {
-        aux.getLinks()
+        aux.getLinks(100)
         .then(function(response) {
             res.json(response.rows);
         })
