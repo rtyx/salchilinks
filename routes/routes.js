@@ -2,6 +2,20 @@ const express = require('express');
 const router = express.Router();
 const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
+const cookieSession = require('cookie-session');
+const data = require('../data.json');
+
+router.use(cookieSession({
+    secret: 'helloworld',
+    maxAge: 1000 * 60 * 60 * 24 * 14
+}));
+
+// MAIN url
+
+// router.route('/')
+//     .get(function(req,res){
+//         console.log(req.session);
+//     });
 
 var csrfProtection = csurf({ cookie: true });
 // var parseForm = bodyParser.urlencoded({ extended: false });
@@ -12,6 +26,7 @@ router.use(csrfProtection);
 
 router.route('/home')
     .get(function(req, res) {
+        console.log(req.session);
         aux.getLinks(100)
         .then(function(response) {
             res.json(response.rows);
@@ -34,6 +49,10 @@ router.route('/register')
     .post(function(req, res) {
         aux.registerUser(req.body.user_name, req.body.email, req.body.password)
         .then(function(response) {
+            req.session.user = {
+                user_name: req.body.user_name
+            };
+            console.log(req.session.user);
             res.json(response.rows);
         })
         .catch(function(error) {

@@ -19,20 +19,17 @@ module.exports = {
         });
     },
     registerUser: function (user_name, email, password) {
-        hash.hashPassword(password).then(function(hashedPassword){
+        return hash.hashPassword(password).then(function(hashedPassword){
             console.log(chalk.blue("Registering user..."));
-            console.log(user_name + email + hashedPassword);
-            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
+            db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
         });
     },
     logInUser: function(email, password) {
         console.log(chalk.blue("Logging " + email + " in..."));
         db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
             hash.checkPassword(password, userInfo.rows[0].password).then(function(passMatch){
-                console.log(userInfo.rows[0].password);
-                console.log(password);
                 if(passMatch){
-                    console.log('matched'); // problem is the salt always changes so passwords don't match. Set up constant salt ?
+                    console.log('matched');
                 } else {
                     console.log('did not match');
                 }

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rtyx/linksarchive#readme",
   "dependencies": {
+    "angular-cookies": "^1.5.8",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "chalk": "^1.1.3",

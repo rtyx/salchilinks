@@ -6,6 +6,7 @@
         .module('app', [
             // Angular modules.
             'ui.router',
+            'ngCookies',
 
             // Custom modules.
             'app.router',

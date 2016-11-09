@@ -3,9 +3,9 @@
         .module('app.register')
         .controller('registerCtrl', registerControl);
 
-        registerControl.$inject = ['$http']
+        registerControl.$inject = ['$http', '$cookies'];
 
-        function registerControl($http) {
+        function registerControl($http, $cookies) {
             var vm = this;
 
             $http.get('/register').then(function(resp) {
