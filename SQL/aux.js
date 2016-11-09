@@ -29,6 +29,10 @@ module.exports = {
             })
         })
     },
+    // deleteProfile: function(data) {
+    //     console.log(chalk.blue("Deleting profile " + email + " in..."));
+    //     return db.usedb('DELETE FROM users WHERE user_id = $1', [id]);
+    // }
     getProfile: function(id) {
         console.log(chalk.blue("Getting " + user + " profile..."));
         return db.usedb('SELECT * FROM users WHERE user_id = $1;', [id]);

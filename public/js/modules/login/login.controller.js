@@ -3,9 +3,9 @@
         .module('app.login')
         .controller('loginCtrl', loginControl);
 
-        loginControl.$inject = ['$http']
+        loginControl.$inject = ['$http', '$state']
 
-        function loginControl($http) {
+        function loginControl($http, $state) {
             var vm = this;
             vm.login = function(email, password) {
               var config = {
@@ -16,7 +16,8 @@
                 },
                 url: '/login'
               }
-              $http(config)
+              $http(config);
+              $state.go('home');
             }
         }
 })();

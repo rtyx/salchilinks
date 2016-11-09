@@ -20,7 +20,6 @@ router.use(cookieSession({
 
 router.route('/home')
     .get(function(req, res) {
-        console.log(req.session);
         aux.getLinks(100)
         .then(function(response) {
             res.json(response.rows);
@@ -41,7 +40,6 @@ router.route('/register')
             req.session.user = {
                 user_name: req.body.user_name
             };
-            console.log(req.session.user);
             res.json(response.rows);
         })
         .catch(function(error) {
@@ -67,6 +65,20 @@ router.route('/login')
             });
         });
     });
+
+// router.get('/logout', function(req,res){
+//     if(req.session.user){
+//         req.session = null;
+//     }
+// });
+
+// router.get('/del/profile', function(req,res){
+    // var query = 'DELETE FROM petition WHERE user_id = $1';
+    // var params = [req.session.user.id];
+    // db.dbquery(query, params).then(function(){
+    //     res.redirect('/petition');
+    // })
+// });
 
 router.route('/profile/:user')
     .get(function(req, res) {

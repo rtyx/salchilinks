@@ -3,9 +3,9 @@
         .module('app.register')
         .controller('registerCtrl', registerControl);
 
-        registerControl.$inject = ['$http', '$cookies'];
+        registerControl.$inject = ['$http', '$state'];
 
-        function registerControl($http, $cookies) {
+        function registerControl($http, $state) {
             var vm = this;
             vm.register = function(user_name, email, password) {
               var config = {
@@ -18,6 +18,7 @@
                 url: '/register'
               }
               $http(config)
+              $state.go('home');
             }
         }
 })();
