@@ -9,7 +9,10 @@ CREATE TABLE links (
     url TEXT not null,
     title VARCHAR(255) not null,
     comments INT,
-    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ogtitle VARCHAR(255),
+    ogdescription TEXT,
+    ogimage TEXT DEFAULT "http://orig11.deviantart.net/41fc/f/2013/127/5/7/toon_link_by_sp415-d64ek9l.jpg"
 );
 
 CREATE TABLE users (

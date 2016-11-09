@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
+
+var csrfProtection = csurf({ cookie: true });
+// var parseForm = bodyParser.urlencoded({ extended: false });
+
+router.use(csrfProtection);
 
 // HOME
 
@@ -20,6 +26,11 @@ router.route('/home')
     });
 
 router.route('/register')
+    .get(function(req, res) {
+        res.json({
+            csrfToken: req.csrfToken()
+        });
+    })
     .post(function(req, res) {
         aux.registerUser(req.body.user_name, req.body.email, req.body.password)
         .then(function(response) {
@@ -35,6 +46,11 @@ router.route('/register')
     });
 
 router.route('/login')
+    .get(function(req, res) {
+        res.json({
+            csrfToken: req.csrfToken()
+        });
+    })
     .post(function(req, res) {
         aux.logInUser(req.body.email, req.body.password)
         .then(function(response) {
@@ -50,6 +66,11 @@ router.route('/login')
     });
 
 router.route('/upload')
+    .get(function(req, res) {
+        res.json({
+            csrfToken: req.csrfToken()
+        });
+    })
     .post(function(req, res) {
         aux.insertLink(420, req.body.url, req.body.title)
         .then(function(response) {
@@ -79,5 +100,12 @@ router.route('/profile/:user')
             });
         });
     });
+
+// router.route('/confirmLogin')
+//     .get(function(req, res) {
+//         if (req.session.user) {
+//
+//         }
+//     })
 
 module.exports = router;

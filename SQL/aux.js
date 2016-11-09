@@ -1,6 +1,8 @@
 const chalk = require('chalk');
 const db = require('./db.js');
 const hash = require('./hash.js');
+const parser = require("ogp-parser");
+
 
 module.exports = {
     getLinks: function (count) {
@@ -8,8 +10,13 @@ module.exports = {
         return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
     insertLink: function (user_id, url, title) {
-        console.log(chalk.blue("Inserting links..."));
-        return db.usedb('INSERT INTO links (user_id, url, title) VALUES ($1, $2, $3) RETURNING id;', [user_id, url, title]);
+        return parser(url, true).then(function(data) {
+            console.log(chalk.blue("Inserting links..."));
+            var ogtitle = data.ogp['og:title'];
+            var ogdescription = data.ogp['og:description'];
+            var ogimage = data.ogp['og:image'];
+            return db.usedb('INSERT INTO links (user_id, url, title, ogtitle, ogdescription, ogimage) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;', [user_id, url, title, ogtitle, ogdescription, ogimage]);
+        });
     },
     registerUser: function (user_name, email, password) {
         hash.hashPassword(password).then(function(hashedPassword){

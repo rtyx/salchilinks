@@ -1,9 +1,9 @@
 var parser = require("ogp-parser");
-var url = "http://internacional.elpais.com/internacional/2016/11/09/estados_unidos/1478647677_279555.html";
+var url = "https://github.com/spicedacademy/fullstackcohort2/tree/master/penultimate_project";
 parser(url, true).then(function(data) {
-    console.log(data.ogp['og:title']);
-    console.log(data.ogp['og:description']);
-    console.log(data.ogp['og:image']);
+    console.log(data.ogp['og:title'] || null);
+    console.log(data.ogp['og:description'] || null);
+    console.log(data.ogp['og:image'] || "placeholder.jpg");
 }).catch(function(error) {
     console.error(error);
 });
