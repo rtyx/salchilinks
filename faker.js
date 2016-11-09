@@ -1,9 +1,6 @@
 const faker = require('faker');
 const aux = require('./SQL/aux.js');
 
-
-
-
 // var randomCard = faker.helpers.createCard(); // random contact card containing
 
 // for (var i = 0; i < 100; i++) {

@@ -1,9 +1,7 @@
-var faker = require('faker');
-
-var randomName = faker.name.findName(); // Rowan Nikolaus
-var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-// var randomCard = faker.helpers.createCard(); // random contact card containing
-
-console.log(randomName);
-console.log(randomEmail);
-// console.log(randomCard);
+var parser = require("ogp-parser");
+var url = "http://internacional.elpais.com/internacional/2016/11/09/estados_unidos/1478647677_279555.html";
+parser(url, true).then(function(data) {
+    console.log(data.ogp);
+}).catch(function(error) {
+    console.error(error);
+});
