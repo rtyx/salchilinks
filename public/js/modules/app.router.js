@@ -12,7 +12,7 @@
 
             .state('home', {
                 url: '/home',
-                templateUrl: 'js/modules/home/home.html',
+                templateUrl: 'js/modules/home/home2.html',
                 controller: 'homeCtrl',
                 controllerAs: 'home'
             })

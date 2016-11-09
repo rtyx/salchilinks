@@ -1,10 +1,10 @@
 -- DROP TABLE IF EXISTS comments;
 -- DROP TABLE IF EXISTS links;
 -- DROP TABLE IF EXISTS users;
-
+-- 
 -- CREATE TABLE links (
 --     id SERIAL primary key,
---     user_id INT references users(id),
+--     user_id INT,
 --     url TEXT not null,
 --     title VARCHAR(255) not null,
 --     comments INT,
@@ -17,7 +17,7 @@
 --     email VARCHAR(255) not null unique,
 --     password VARCHAR(255) not null
 -- );
-
+--
 -- CREATE TABLE comments (
 --     id SERIAL primary key,
 --     user_id INT references users(id),

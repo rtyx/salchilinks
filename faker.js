@@ -6,7 +6,7 @@ const aux = require('./SQL/aux.js');
 
 // var randomCard = faker.helpers.createCard(); // random contact card containing
 
-// for (var i = 0; i < 100; i++) {
+// for (var i = 0; i < 20; i++) {
 //     var randomId = faker.random.number();
 //     var randomUrl = faker.internet.url();
 //     var randomTitle = faker.random.words();

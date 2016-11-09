@@ -7,18 +7,21 @@
         <label>User Name</label>
         <br>
         <input ng-model="register.user.name" id="name-register" class="input-register" type="text">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
       </br>
     </div>
     <div id="register-email">
       <label>Email</label>
       <br>
       <input ng-model="register.user.email" id="email-register" class="input-register" type="email">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
     </br>
   </div>
   <div id="register-password">
     <label>Password</label>
     <br>
     <input ng-model="register.user.password" id="password-register" class="input-register" type="password">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
   </br>
 </div>
 <button ng-click="register.register(register.user.name, register.user.email, register.user.password)" id="submit-register"><span>Register</span></button>

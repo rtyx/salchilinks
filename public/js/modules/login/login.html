@@ -7,12 +7,14 @@
 					      	<label>Email</label>
 					      	<br>
 					      	<input ng-model="login.user.email" id="email-user-login" class="input-login" type="email">
+							<input type="hidden" name="_csrf" value="{{csrfToken}}">
 					    	</br>
 					  	</div>
 						<div id="password">
 							<label>Password</label>
 							<br>
 							<input ng-model="login.user.password" id="password-login" class="input-login" type="password">
+							<input type="hidden" name="_csrf" value="{{csrfToken}}">
 							</br>
 						</div>
 						<button ng-click="login.login(login.user.email, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Sign Up</button>
