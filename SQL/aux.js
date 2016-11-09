@@ -20,19 +20,17 @@ module.exports = {
     },
     logInUser: function(email, password) {
         console.log(chalk.blue("Logging " + email + " in..."));
-        hash.hashPassword(password).then(function(hashedPassword){
-            console.log(hashedPassword);
-            db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
-                console.log('typed pass ' + hashedPassword);
-                console.log('db pass ' + userInfo.rows[0].password);
-                hash.checkPassword(userInfo.rows[0].password, hashedPassword).then(function(passMatch){
-                    if(passMatch){
-                        console.log('matched'); // problem is the salt always changes so passwords don't match. Set up constant salt ?
-                    }
-                })
+        db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
+            hash.checkPassword(password, userInfo.rows[0].password).then(function(passMatch){
+                console.log(userInfo.rows[0].password);
+                console.log(password);
+                if(passMatch){
+                    console.log('matched'); // problem is the salt always changes so passwords don't match. Set up constant salt ?
+                } else {
+                    console.log('did not match');
+                }
             })
         })
-
     },
     getProfile: function(id) {
         console.log(chalk.blue("Getting " + user + " profile..."));
