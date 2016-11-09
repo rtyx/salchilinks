@@ -3,8 +3,8 @@ const wiii = chalk.bold.green;
 const error = chalk.bold.red;
 const pg = require('pg');
 
-var user = "rtyx";
-var password = "password";
+var user = "Fred";
+var password = "spiced";
 
 var dbUrl = process.env.DATABASE_URL || 'postgress://' + user + ':' + password + '@localhost/linksarchive';
 

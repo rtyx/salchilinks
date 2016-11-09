@@ -1,6 +1,7 @@
-DROP TABLE IF EXISTS links;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS comments;
+-- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS comments;
+-- DROP TABLE IF EXISTS links;
+
 
 CREATE TABLE links (
     id SERIAL primary key,

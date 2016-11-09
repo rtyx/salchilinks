@@ -21,33 +21,12 @@ router.route('/home')
 
 router.route('/register')
     .post(function(req, res) {
-        // [user, email, password] = [req.body.user, req.body.email, req.body.password];
-        aux.registerUser(req.body.user, req.body.email, req.body.password)
-        .then(function(response) {
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
-        });
+        aux.registerUser(req.body.user_name, req.body.email, req.body.password)
     });
 
 router.route('/login')
     .post(function(req, res) {
         aux.logInUser(req.body.email, req.body.password)
-        .then(function(response) {
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
-        });
     });
 
 router.route('/profile/:user')
