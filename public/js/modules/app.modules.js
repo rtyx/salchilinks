@@ -9,6 +9,7 @@
 
             // Custom modules.
             'app.router',
+            'app.upload',
             'app.home',
             'app.register',
             'app.login'

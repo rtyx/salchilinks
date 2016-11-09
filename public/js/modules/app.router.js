@@ -29,6 +29,13 @@
                 templateUrl: 'js/modules/login/login.html',
                 controller: 'loginCtrl',
                 controllerAs: 'login'
+            })
+
+            .state('upload', {
+                url: '/upload',
+                templateUrl: 'js/modules/upload/upload.html',
+                controller: 'uploadCtrl',
+                controllerAs: 'upload'
             });
 
             // .state('home', {
@@ -36,13 +43,6 @@
             //     templateUrl: 'js/modules/home/home.html',
             //     controller: 'homeCtrl',
             //     controllerAs: 'home'
-            // })
-
-            // .state('upload', {
-            //     url: '/upload',
-            //     templateUrl: 'upload.html',
-            //     controller: 'uploadCtrl',
-            //     controllerAs: 'upload'
             // })
 
             // .state('profile', {
