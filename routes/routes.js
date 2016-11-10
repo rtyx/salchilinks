@@ -3,12 +3,8 @@ const router = express.Router();
 const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
 const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 const data = require('../data.json');
-
-router.use(cookieSession({
-    secret: 'helloworld',
-    maxAge: 1000 * 60 * 60 * 24 * 14
-}));
 
 // MAIN url
 
@@ -17,9 +13,13 @@ router.use(cookieSession({
 //         console.log(req.session);
 //     });
 
-var csrfProtection = csurf({ cookie: true });
 // var parseForm = bodyParser.urlencoded({ extended: false });
-
+router.use(cookieSession({
+    secret: 'helloworld',
+    maxAge: 1000 * 60 * 60 * 24 * 14
+}));
+router.use(cookieParser());
+var csrfProtection = csurf({ cookie: true });
 router.use(csrfProtection);
 
 // HOME

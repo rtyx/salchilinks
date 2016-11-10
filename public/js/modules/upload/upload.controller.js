@@ -1,5 +1,5 @@
 (function() {
-    
+
     angular
     .module("app.upload")
     .controller("uploadCtrl", uploadControl);
@@ -8,6 +8,10 @@
 
     function uploadControl($http) {
         var vm = this;
+
+        $http.get('/register').then(function(resp) {
+            console.log(resp.data.csrfToken);
+        });
 
         vm.uploadLink = uploadLink;
 
