@@ -5,9 +5,9 @@ function parseUrl(url) {
         console.log("Parsing url...");
         console.log("Parsed!");
         return {
-            title: data.ogp['og:title'][0],
-            description: data.ogp['og:description'][0],
-            image: data.ogp['og:image'][0]
+            title: data.ogp['og:title'][0] || null,
+            description: data.ogp['og:description'][0] || null,
+            image: data.ogp['og:image'][0] || null
         };
     });
 }

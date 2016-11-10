@@ -8,7 +8,8 @@ const parser = require('./parser.js');
 module.exports = {
     getLinks: function (count) {
         console.log(chalk.blue("Getting links..."));
-        return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
+        // return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
+        return db.usedb('SELECT links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
     insertLink: function (user_id, url, title) {
         console.log(chalk.blue("Inserting links..."));
@@ -26,12 +27,16 @@ module.exports = {
                             throw new Error("Duplicated title");
                         } else {
                             console.log("Looks new!");
-                            return db.usedb('INSERT INTO links (user_id, url, title, ogtitle, ogdescription, ogimage) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;', [user_id, url, title, og.title, og.description, og.image]);
+                            return db.usedb('INSERT INTO links (user_id, url, title, ogtitle, ogdescription, ogimage, comments) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;', [user_id, url, title, og.title, og.description, og.image, 0]);
                         }
                     });
                 }
             });
         });
+    },
+    insertLinkThroughFaker: function (user_id, url, title) {
+        console.log(chalk.blue("Inserting links..."));
+        return db.usedb('INSERT INTO links (user_id, url, title, comments) VALUES ($1, $2, $3, $4) RETURNING id;', [user_id, url, title, 0]);
     },
     registerUser: function (user_name, email, password) {
         return hash.hashPassword(password).then(function(hashedPassword){
@@ -51,6 +56,10 @@ module.exports = {
             });
         });
     },
+    // deleteProfile: function(data) {
+    //     console.log(chalk.blue("Deleting profile " + email + " in..."));
+    //     return db.usedb('DELETE FROM users WHERE user_id = $1', [id]);
+    // }
     getProfile: function(id) {
         console.log(chalk.blue("Getting " + id + " profile..."));
         return db.usedb('SELECT * FROM users WHERE user_id = $1;', [id]);
