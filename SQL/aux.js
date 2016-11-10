@@ -5,7 +5,8 @@ const hash = require('./hash.js');
 module.exports = {
     getLinks: function (count) {
         console.log(chalk.blue("Getting links..."));
-        return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
+        // return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
+        return db.usedb('SELECT links.user_id, links.url, links.title, links.comments, links.creation_date, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
     insertLink: function (user_id, url, title) {
         console.log(chalk.blue("Inserting links..."));

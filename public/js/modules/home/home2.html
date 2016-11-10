@@ -28,17 +28,17 @@
     </div>
 </div>
 
-<div class="links-container" ng-repeat="link in home.data">
-    <div class="display-links" ng-click="changeActiveLink(link)">
+<div class="links-container" >
+    <div class="display-links" ng-repeat="link in home.data">
         <div class="container-content">
-            <div id="link-counter"></div>
-            <!-- <div id="image-link"></div> -->
-            <a id="image-link" class="cardLink" href="{{link.url}}">{{link.title}}</a>
-            <div id="link-text">{{link.url}}</div>
+            <div id="link-counter">rank goes here</div>
+            <a id="image-link" class="cardLink" href="{{link.url}}">image goes here</a>
+            <div id="link-text"><a href="{{link.url}}">{{link.url}}</a></br>Link drescription: {{link.title}}</div>
         </div>
         <div class="comment-user-content">
-            <div id="comments-counter">{{link.creation_date}}</div>
-            <div id="username-counter"></div>
+            <div class="linkDate">{{link.creation_date}}</div>
+            <div class="nbComments">{{link.comments}} comments</div>
+            <div class="userName">Posted by {{link.user_name}}</div>
         </div>
     </div>
 </div>
