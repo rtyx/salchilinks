@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 function hashPassword(plainTextPassword) {
     return new Promise(function(resolve, reject){
@@ -13,9 +13,9 @@ function hashPassword(plainTextPassword) {
                     return;
                 }
                 resolve(hash);
-            })
-        })
-    })
+            });
+        });
+    });
 }
 
 function checkPassword(typedPass, dbPass) {
@@ -26,8 +26,8 @@ function checkPassword(typedPass, dbPass) {
                 return;
             }
             resolve(results);
-        })
-    })
+        });
+    });
 }
 
 

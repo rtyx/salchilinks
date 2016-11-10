@@ -1,9 +1,9 @@
-var faker = require('faker');
-
-var randomName = faker.name.findName(); // Rowan Nikolaus
-var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-// var randomCard = faker.helpers.createCard(); // random contact card containing
-
-console.log(randomName);
-console.log(randomEmail);
-// console.log(randomCard);
+var parser = require("ogp-parser");
+var url = "https://github.com/spicedacademy/fullstackcohort2/tree/master/penultimate_project";
+parser(url, true).then(function(data) {
+    console.log(data.ogp['og:title'] || null);
+    console.log(data.ogp['og:description'] || null);
+    console.log(data.ogp['og:image'] || "placeholder.jpg");
+}).catch(function(error) {
+    console.error(error);
+});

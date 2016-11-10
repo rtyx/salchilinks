@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
 const cookieSession = require('cookie-session');
-const data = require('../data.json');
+const cookieParser = require('cookie-parser');
 
 router.use(cookieSession({
     secret: 'helloworld',
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
+router.use(cookieParser());
 
-// MAIN url
-
-// router.route('/')
-//     .get(function(req,res){
-//         console.log(req.session);
-//     });
+router.use(csurf());
+router.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
+});
 
 // HOME
 
@@ -80,6 +81,18 @@ router.route('/login')
     // })
 // });
 
+router.route('/upload')
+    .post(function(req, res) {
+        aux.insertLink(420, req.body.url, req.body.title)
+        .then(function(response) {
+            console.log("Done");
+            res.json(response.rows);
+        })
+        .catch(function(error) {
+            console.log(error(error));
+        });
+    });
+
 router.route('/profile/:user')
     .get(function(req, res) {
         var user = req.query.user;
@@ -95,5 +108,12 @@ router.route('/profile/:user')
             });
         });
     });
+
+// router.route('/confirmLogin')
+//     .get(function(req, res) {
+//         if (req.session.user) {
+//
+//         }
+//     })
 
 module.exports = router;
