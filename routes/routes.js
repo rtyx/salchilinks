@@ -17,6 +17,13 @@ router.use(function(req, res, next) {
     next();
 });
 
+// INDEX
+
+// router.route('/')
+//     .get(function(req, res) {
+//         res.redirect('/#/home');
+//     });
+
 // HOME
 
 router.route('/home')
@@ -78,6 +85,10 @@ router.route('/upload')
         })
         .catch(function(error) {
             console.log(error(error));
+            res.json({
+                success: false,
+                reason: "Something went wrong!"
+            });
         });
     });
 
