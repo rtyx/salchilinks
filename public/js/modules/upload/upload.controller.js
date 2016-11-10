@@ -9,9 +9,12 @@
     function uploadControl($http) {
         var vm = this;
 
-        $http.get('/register').then(function(resp) {
-            console.log(resp.data.csrfToken);
-        });
+        // $http.get('/upload').then(function(resp) {
+        //     console.log(resp);
+        //     // vm.csrfToken = resp.data.csrfToken;
+        //     // console.log(resp.data);
+        //     // console.log(vm.csrfToken);
+        // });
 
         vm.uploadLink = uploadLink;
 

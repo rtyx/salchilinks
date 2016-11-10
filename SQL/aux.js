@@ -1,7 +1,8 @@
 const chalk = require('chalk');
+const error = chalk.bold.red;
 const db = require('./db.js');
 const hash = require('./hash.js');
-const parser = require("ogp-parser");
+const parser = require('./parser.js');
 
 
 module.exports = {
@@ -10,12 +11,26 @@ module.exports = {
         return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
     },
     insertLink: function (user_id, url, title) {
-        return parser(url, true).then(function(data) {
-            console.log(chalk.blue("Inserting links..."));
-            var ogtitle = data.ogp['og:title'];
-            var ogdescription = data.ogp['og:description'];
-            var ogimage = data.ogp['og:image'];
-            return db.usedb('INSERT INTO links (user_id, url, title, ogtitle, ogdescription, ogimage) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;', [user_id, url, title, ogtitle, ogdescription, ogimage]);
+        console.log(chalk.blue("Inserting links..."));
+        return parser.parseUrl(url).then(function(og) {
+            return db.usedb('SELECT * FROM links WHERE url = $1;', [url]).then(function(data) {
+                console.log("Checking if URL already exists...");
+                if (data.rows[0]) {
+                    console.log(error("It already exists!"));
+                    throw new Error("Duplicated URL");
+                } else {
+                    console.log("Checking if title already exists...");
+                    return db.usedb('SELECT * FROM links WHERE title = $1;', [og.title]).then(function(data) {
+                        if (data.rows[0]) {
+                            console.log(error("It already exists!"));
+                            throw new Error("Duplicated title");
+                        } else {
+                            console.log("Looks new!");
+                            return db.usedb('INSERT INTO links (user_id, url, title, ogtitle, ogdescription, ogimage) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;', [user_id, url, title, og.title, og.description, og.image]);
+                        }
+                    });
+                }
+            });
         });
     },
     registerUser: function (user_name, email, password) {
@@ -33,11 +48,11 @@ module.exports = {
                 } else {
                     console.log('did not match');
                 }
-            })
-        })
+            });
+        });
     },
     getProfile: function(id) {
-        console.log(chalk.blue("Getting " + user + " profile..."));
+        console.log(chalk.blue("Getting " + id + " profile..."));
         return db.usedb('SELECT * FROM users WHERE user_id = $1;', [id]);
     },
     getComments: function(id) {

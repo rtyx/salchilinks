@@ -4,23 +4,18 @@ const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
-const data = require('../data.json');
 
-// MAIN url
-
-// router.route('/')
-//     .get(function(req,res){
-//         console.log(req.session);
-//     });
-
-// var parseForm = bodyParser.urlencoded({ extended: false });
 router.use(cookieSession({
     secret: 'helloworld',
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
 router.use(cookieParser());
-var csrfProtection = csurf({ cookie: true });
-router.use(csrfProtection);
+
+router.use(csurf());
+router.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
+});
 
 // HOME
 
@@ -41,11 +36,6 @@ router.route('/home')
     });
 
 router.route('/register')
-    .get(function(req, res) {
-        res.json({
-            csrfToken: req.csrfToken()
-        });
-    })
     .post(function(req, res) {
         aux.registerUser(req.body.user_name, req.body.email, req.body.password)
         .then(function(response) {
@@ -65,11 +55,6 @@ router.route('/register')
     });
 
 router.route('/login')
-    .get(function(req, res) {
-        res.json({
-            csrfToken: req.csrfToken()
-        });
-    })
     .post(function(req, res) {
         aux.logInUser(req.body.email, req.body.password)
         .then(function(response) {
@@ -85,22 +70,14 @@ router.route('/login')
     });
 
 router.route('/upload')
-    .get(function(req, res) {
-        res.json({
-            csrfToken: req.csrfToken()
-        });
-    })
     .post(function(req, res) {
         aux.insertLink(420, req.body.url, req.body.title)
         .then(function(response) {
+            console.log("Done");
             res.json(response.rows);
         })
         .catch(function(error) {
             console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
         });
     });
 
