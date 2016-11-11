@@ -14,6 +14,7 @@ module.exports = {
     insertLink: function (user_id, url, title) {
         console.log(chalk.blue("Inserting links..."));
         return parser.parseUrl(url).then(function(og) {
+            console.log("Checking database for similar links...");
             return db.usedb('SELECT * FROM links WHERE url = $1;', [url]).then(function(data) {
                 console.log("Checking if URL already exists...");
                 if (data.rows[0]) {

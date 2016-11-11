@@ -4,9 +4,9 @@
     .module("app.upload")
     .controller("uploadCtrl", uploadControl);
 
-    uploadControl.$inject = ['$http'];
+    uploadControl.$inject = ['$http', '$state'];
 
-    function uploadControl($http) {
+    function uploadControl($http, $state) {
         var vm = this;
 
         // $http.get('/upload').then(function(resp) {
@@ -29,6 +29,10 @@
                 url: '/upload'
             };
             $http(config);
+            console.log("Uploaded!");
+            setTimeout(function () {
+                $state.go('home');
+            }, 1000);
         }
     }
 })();

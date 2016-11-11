@@ -105,9 +105,9 @@ router.route('/upload')
     })
     .post(function(req, res) {
         aux.insertLink(req.session.user.id, req.body.url, req.body.title)
-        .then(function(response) {
-            console.log("Done");
-            res.json(response.rows);
+        .then(function() {
+            console.log("Done!");
+            res.redirect('/');
         })
         .catch(function(error) {
             console.log(error(error));
