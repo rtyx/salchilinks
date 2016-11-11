@@ -12,7 +12,8 @@
             'app.upload',
             'app.home',
             'app.register',
-            'app.login'
+            'app.login',
+            'app.header'
         ]);
 })();
 

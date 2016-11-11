@@ -36,7 +36,14 @@
                 templateUrl: 'js/modules/upload/upload.html',
                 controller: 'uploadCtrl',
                 controllerAs: 'upload'
-            });
+            })
+
+            .state('header', {
+                url: '/header',
+                templateUrl: 'js/modules/header/header.html',
+                controller: 'headerCtrl',
+                controllerAs: 'header'
+            })
 
             // .state('home', {
             //     url: '/home',
