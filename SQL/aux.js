@@ -41,7 +41,7 @@ module.exports = {
     registerUser: function (user_name, email, password) {
         return hash.hashPassword(password).then(function(hashedPassword){
             console.log(chalk.blue("Registering user..."));
-            db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
+            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3) RETURNING id;', [user_name, email, hashedPassword]);
         });
     },
     logInUser: function(email, password) {

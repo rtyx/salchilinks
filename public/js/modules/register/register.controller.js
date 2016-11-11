@@ -9,7 +9,10 @@
             var vm = this;
 
             $http.get('/register').then(function(resp) {
-                console.log(resp);
+                if (resp.data.logstatus) {
+                    console.log("User " + resp.data.id + " is logged in!");
+                    $state.go('home');
+                }
             });
 
             vm.register = function(user_name, email, password) {
