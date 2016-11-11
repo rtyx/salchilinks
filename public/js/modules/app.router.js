@@ -45,12 +45,12 @@
                 controllerAs: 'header'
             })
 
-            // .state('home', {
-            //     url: '/home',
-            //     templateUrl: 'js/modules/home/home.html',
-            //     controller: 'homeCtrl',
-            //     controllerAs: 'home'
-            // })
+            .state('link', {
+                url: '/link',
+                templateUrl: 'js/modules/link/link.html',
+                controller: 'linkCtrl',
+                controllerAs: 'link'
+            });
 
             // .state('profile', {
             //     url: '/profile',
