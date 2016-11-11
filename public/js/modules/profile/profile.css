@@ -1,0 +1,109 @@
+.profile-display{
+	width:500px;
+	height:100px;
+	border:1px solid black;
+	margin-left:10%;
+}
+
+.info-profile{
+	width:400px;
+	height:75px;
+	border:1px solid black;
+	display:flex;
+	flex-direction:row;
+}
+
+#username-profile{
+	width:150px;
+	height:50px;
+	border:1px dotted black;
+}
+
+#email-profile{
+	width:150px;
+	height:50px;
+	border:1px dotted black;
+}
+
+.link-content-container{
+	position:relative;
+	width:auto;
+	height:auto;
+	border:1px solid black;
+	margin-top:10%;
+	display:flex;
+	flex-direction:row;
+}
+.links-post{
+	position:relative;
+	width:400px;
+	height:600px;
+	border:1px solid black;
+	left:10%;
+}
+
+.display-links-post{
+	width:400px;
+	height:50px;
+	background-color:black;
+	color:white;
+}
+
+.display-comments-post{
+	width:400px;
+	height:50px;
+	background-color:black;
+	color:white;
+}
+
+
+.comments-post{
+	position:relative;
+	width:400px;
+	height:600px;
+	border:1px solid black;
+	left:20%;
+}
+.container-post{
+	position:relative;
+	width:400px;
+	height:auto;
+	border:1px solid black;
+	display:flex;
+	flex-direction: row;
+}
+
+#image-link-post{
+	position:relative;
+	width:100px;
+	height:100px;
+	border:1px solid black;
+}
+
+#link-post{
+	position:relative;
+	width:300px;
+	height:100px;
+	border:1px solid black;
+}
+
+#link-date{
+	position:relative;
+	width:100px;
+	height:30px;
+	border:1px solid black;
+}
+
+#comment-post{
+	position:relative;
+	width:300px;
+	height:100px;
+	border:1px solid black;
+}
+
+#date-post{
+	position:relative;
+	width:100px;
+	height:30px;
+	border:1px solid black;
+}
