@@ -60,9 +60,9 @@ module.exports = {
     //     console.log(chalk.blue("Deleting profile " + email + " in..."));
     //     return db.usedb('DELETE FROM users WHERE user_id = $1', [id]);
     // }
-    getProfile: function(id) {
-        console.log(chalk.blue("Getting " + id + " profile..."));
-        return db.usedb('SELECT * FROM users WHERE user_id = $1;', [id]);
+    getProfile: function(user_name) {
+        console.log(chalk.blue("Getting " + user_name + " profile..."));
+        return db.usedb('SELECT * FROM users WHERE user_name = $1;', [user_name]);
     },
     getComments: function(id) {
         console.log(chalk.blue("Getting comments from the server..."));

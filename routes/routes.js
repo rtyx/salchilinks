@@ -46,7 +46,8 @@ router.route('/register')
         res.json(req.session.user);
     })
     .post(function(req, res) {
-        if (req.session.user.logstatus) {
+        console.log(req.session);
+        if (req.session.user) {
             res.redirect('/');
         } else {
             aux.registerUser(req.body.user_name, req.body.email, req.body.password)
@@ -99,6 +100,9 @@ router.route('/login')
 // });
 
 router.route('/upload')
+    .get(function(req, res) {
+        res.json(req.session.user);
+    })
     .post(function(req, res) {
         aux.insertLink(req.session.user.id, req.body.url, req.body.title)
         .then(function(response) {
@@ -116,9 +120,10 @@ router.route('/upload')
 
 router.route('/profile/:user')
     .get(function(req, res) {
-        var user = req.query.user;
+        var user = req.url.split('/').pop();
         aux.getProfile(user)
         .then(function(response) {
+            console.log(response);
             res.json(response.rows);
         })
         .catch(function(error) {
@@ -133,7 +138,7 @@ router.route('/profile/:user')
 router.route('/logout')
     .get(function(req, res) {
         req.session = null;
-        res.redirect('/');
+        res.redirect('/#/home');
     });
 
 // router.route('/confirmLogin')
