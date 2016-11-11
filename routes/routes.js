@@ -42,27 +42,38 @@ router.route('/home')
     });
 
 router.route('/register')
+    .get(function(req, res) {
+        res.json(req.session.user);
+    })
     .post(function(req, res) {
-        aux.registerUser(req.body.user_name, req.body.email, req.body.password)
-        .then(function(response) {
-            req.session.user = {
-                user_name: req.body.user_name
-            };
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
+        console.log(req.session);
+        if (req.session.user) {
+            res.redirect('/');
+        } else {
+            aux.registerUser(req.body.user_name, req.body.email, req.body.password)
+            .then(function(response) {
+                req.session.user = {
+                    logstatus: true,
+                    id: response.rows[0].id
+                };
+                console.log(req.session);
+                res.json(response.rows);
+            })
+            .catch(function(error) {
+                console.log(error(error));
+                res.json({
+                    success: false,
+                    reason: error
+                });
             });
-        });
+        }
     });
 
 router.route('/login')
     .post(function(req, res) {
         aux.logInUser(req.body.email, req.body.password)
         .then(function(response) {
+            console.log(response.rows);
             res.json(response.rows);
         })
         .catch(function(error) {
@@ -89,8 +100,11 @@ router.route('/login')
 // });
 
 router.route('/upload')
+    .get(function(req, res) {
+        res.json(req.session.user);
+    })
     .post(function(req, res) {
-        aux.insertLink(420, req.body.url, req.body.title)
+        aux.insertLink(req.session.user.id, req.body.url, req.body.title)
         .then(function(response) {
             console.log("Done");
             res.json(response.rows);
@@ -106,9 +120,10 @@ router.route('/upload')
 
 router.route('/profile/:user')
     .get(function(req, res) {
-        var user = req.query.user;
+        var user = req.url.split('/').pop();
         aux.getProfile(user)
         .then(function(response) {
+            console.log(response);
             res.json(response.rows);
         })
         .catch(function(error) {
@@ -118,6 +133,12 @@ router.route('/profile/:user')
                 reason: error
             });
         });
+    });
+
+router.route('/logout')
+    .get(function(req, res) {
+        req.session = null;
+        res.redirect('/#/home');
     });
 
 // router.route('/confirmLogin')

@@ -50,13 +50,13 @@
                 templateUrl: 'js/modules/link/link.html',
                 controller: 'linkCtrl',
                 controllerAs: 'link'
-            });
+            })
 
-            // .state('profile', {
-            //     url: '/profile',
-            //     templateUrl: 'profile.html',
-            //     controller: 'profileCtrl',
-            //     controllerAs: 'profile'
-            // });
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'js/modules/profile/profile.html',
+                controller: 'profileCtrl',
+                controllerAs: 'profile'
+            });
     });
 })();

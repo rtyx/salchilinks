@@ -41,7 +41,7 @@ module.exports = {
     registerUser: function (user_name, email, password) {
         return hash.hashPassword(password).then(function(hashedPassword){
             console.log(chalk.blue("Registering user..."));
-            db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3);', [user_name, email, hashedPassword]);
+            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3) RETURNING id;', [user_name, email, hashedPassword]);
         });
     },
     logInUser: function(email, password) {
@@ -60,9 +60,9 @@ module.exports = {
     //     console.log(chalk.blue("Deleting profile " + email + " in..."));
     //     return db.usedb('DELETE FROM users WHERE user_id = $1', [id]);
     // }
-    getProfile: function(id) {
-        console.log(chalk.blue("Getting " + id + " profile..."));
-        return db.usedb('SELECT * FROM users WHERE user_id = $1;', [id]);
+    getProfile: function(user_name) {
+        console.log(chalk.blue("Getting " + user_name + " profile..."));
+        return db.usedb('SELECT * FROM users WHERE user_name = $1;', [user_name]);
     },
     getComments: function(id) {
         console.log(chalk.blue("Getting comments from the server..."));

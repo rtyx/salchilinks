@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>My profile page</title>
-		<link rel="stylesheet" type="text/css" href="../css/profile.css">
-	</head>
-</html>
-<body>
-	<div class="profile-display">
-		<div class="info-profile">
-			<img id="profile-logo" src="../../assets/user-logo.png">
-			<div id="username-profile"></div>
-			<div id="email-profile"></div>
-		</div>
 
+(function() {
+    angular
+        .module('app.profile')
+        .controller('profileCtrl', profileControl);
 
-			<div class="links-post">
-				<div class="display-links-post">
-					<div class="container-post">
-						<div id="link-post"></div>
-						<div id="image-post"></div>
-						<div id="link-post"></div>
-					</div>
-				</div>
+        profileControl.$inject = ['$http', '$state'];
 
+        function profileControl($http, $state) {
+            var vm = this;
 
-			<div class="comments-post">
-					<div class="display-comments-post">
-						<div class="container-post">
-							<div id="link-post"></div>
-							<div id="image-post"></div>
-							<div id="link-post"></div>
-						</div>
-					</div>
-			</div>
+            // $http.get('/profile/').then(function(resp) {
+            //     if (resp.data.logstatus) {
+            //         console.log("User " + resp.data.id + " is logged in!");
+            //         $state.go('home');
+            //     }
+            // });
 
-	</div>
-</body>
+            // vm.register = function(user_name, email, password) {
+            //   var config = {
+            //     method: 'POST',
+            //     data: {
+            //         user_name: user_name,
+            //         email: email,
+            //         password: password
+            //     },
+            //     url: '/register'
+            //   }
+            //   $http(config)
+            //   $state.go('home');
+            // }
+        }
+})();

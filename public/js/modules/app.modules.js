@@ -8,13 +8,14 @@
             'ui.router',
 
             // Custom modules.
-            // 'app.link',
+            'app.link',
             'app.router',
             'app.upload',
             'app.home',
             'app.register',
             'app.login',
-            'app.header'
+            'app.header',
+            'app.profile',
         ]);
 })();
 
