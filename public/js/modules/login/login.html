@@ -1,0 +1,25 @@
+<div class="form-log-in">
+	<img id="login-background" src="../../assets/login-background.png" width="80%" height="116%"></img>
+	<div id="form-background"></div>
+		<div id="log-in">Log in</div>
+
+	<form class="log-in-form">
+		<div id="login-email">
+			<label>Email</label>
+			<br>
+			<input ng-model="login.user.email" id="email-user-login" class="input-login" type="email">
+			<input type="hidden" name="_csrf" value="{{csrfToken}}">
+			</br>
+		</div>
+	<div id="password">
+		<label>Password</label>
+		<br>
+		<input ng-model="login.user.password" id="password-login" class="input-login" type="password">
+		<input type="hidden" name="_csrf" value="{{csrfToken}}">
+		</br>
+	</div>
+	<button ng-click="login.login(login.user.email, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Log in</button>
+	</form>
+<div id="login-click">Register<a ui-sref="register"> Clicking here</a></div>
+<div id="close-form">X</div>
+</div>

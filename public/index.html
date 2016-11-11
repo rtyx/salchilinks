@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="app">
     <head>
         <title>LINKS LINKS LINKS</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./js/modules/login/login.css">
+        <link rel="stylesheet" type="text/css" href="./js/modules/register/register.css">
+        <link rel="stylesheet" type="text/css" href="./js/modules/home/home.css">
+        <link rel="stylesheet" type="text/css" href="./js/modules/header/header.css">
+        <link href="https://fonts.googleapis.com/css?family=Coiny|Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Oswald" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Raleway" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+        <script src="http://unpkg.com/angular-ui-router@latest/release/angular-ui-router.min.js"></script>
 
     </head>
 
-    <body ng-app="myApp">
-        <div class="header">
-            <a href="/">
-                <h1>LINKS LINKS LINKS</h1>
-            </a>
-        </div>
-        <div ng-controller="index">
-            <div ng-repeat="link in index">
-                <div class="linkBox">
-                    <!-- <div class="position">
-                        {{link.position}}
-                    </div> -->
-                    <a href="{{link.url}}">{{link.title}}</a>
-                    <div class="adminAuthor">
-                        <b>{{link.author}}</b>
-                    </div>
-                    <div class="timeStamp">
-                        <i>{{link.timeStamp}}</i>
-                    </div>
-                </div>
+    <body>
+        <div class="content">
+            <div ui-view>
+
+                <!-- HERE'S WHERE THE CONTENT IS INJECTED -->
+
             </div>
         </div>
+
+        <!-- APP -->
+        <script src="./js/modules/app.modules.js"></script>
+        <!-- ROUTER -->
+        <script src="./js/modules/app.router.js"></script>
+        <!-- HEADER -->
+        <script src="./js/modules/header/header.module.js"></script>
+        <script src="./js/modules/header/header.controller.js"></script>
+        <!-- HOME -->
+        <script src="./js/modules/home/home.module.js"></script>
+        <script src="./js/modules/home/home.controller.js"></script>
+        <!-- REGISTER -->
+        <script src="./js/modules/register/register.module.js"></script>
+        <script src="./js/modules/register/register.controller.js"></script>
+        <!-- UPLOAD -->
+        <script src="./js/modules/upload/upload.module.js"></script>
+        <script src="./js/modules/upload/upload.controller.js"></script>
+        <!-- COMMENTS -->
+        <!-- <script src="./js/modules/comments/comments.module.js"></script>
+        <script src="./js/modules/comments/comments.controller.js"></script> -->
+        <!-- LINK -->
+        <!-- <script src="./js/modules/link/link.module.js"></script>
+        <script src="./js/modules/link/link.controller.js"></script> -->
+        <!-- LOGIN -->
+        <script src="./js/modules/login/login.module.js"></script>
+        <script src="./js/modules/login/login.controller.js"></script>
+        <!-- PROFILE -->
+        <!-- <script src="./js/modules/profile/profile.module.js"></script>
+        <script src="./js/modules/profile/profile.controller.js"></script> -->
     </body>
 </html>

@@ -3,8 +3,6 @@ body{
 	margin:0px;
 }
 
-
-
 .home-header{
 	position:relative;
 	display:flex;
@@ -115,7 +113,6 @@ body{
 .links-container{
 	position:relative;
 	width:600px;
-	height:auto;
 	border:1px solid black;
 	left:10%;
 	margin-top:5%;
@@ -124,7 +121,6 @@ body{
 .display-links{
 	position:relative;
 	width:600px;
-	height:auto;
 	border:1px solid black
 }
 
@@ -139,44 +135,44 @@ body{
 #link-counter{
 	position:relative;
 	width:50px;
-	height:100px;
-	border:2px dotted black;
 }
 
 #image-link{
 	position:relative;
 	width:100px;
-	height:100px;
 	border:2px dotted black;
 }
 
 #link-text{
 	position:relative;
 	width:450px;
-	height:100px;
-	border:2px dotted black;
+	overflow-wrap:break-word;
 }
+
+
 
 
 .comment-user-content{
 	position:relative;
 	display:flex;
 	flex-direction:row;
-	margin-left:26%;
+	background-color: skyblue;
 	width:600px;
-	height:100px;
-}
-#comments-counter{
-	position:relative;
-	width:150px;
-	height:30px;
-	border:2px dotted black;
 }
 
-#username-counter{
+.linkDate {
 	position:relative;
-	margin-left: 10%;
+	min-width: 10px;
+}
+
+.nbComments{
+	position:relative;
+	min-width: 10px;
+	margin-left: 5%;
+}
+
+.userName{
+	position:relative;
+	margin-left: 5%;
 	width:150px;
-	height:30px;
-	border:2px dotted black;
 }

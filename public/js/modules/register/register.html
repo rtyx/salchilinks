@@ -1,0 +1,32 @@
+<div class="form-register">
+  <img id="register-background" src="../../assets/register-background.png" width="70%" height="90%">
+  <div id="form-background">
+    <div id="register">Register</div>
+    <form class="register-in">
+      <div id="register-name">
+        <label>User Name</label>
+        <br>
+        <input ng-model="register.user.name" id="name-register" class="input-register" type="text">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      </br>
+    </div>
+    <div id="register-email">
+      <label>Email</label>
+      <br>
+      <input ng-model="register.user.email" id="email-register" class="input-register" type="email">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    </br>
+  </div>
+  <div id="register-password">
+    <label>Password</label>
+    <br>
+    <input ng-model="register.user.password" id="password-register" class="input-register" type="password">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+  </br>
+</div>
+<button ng-click="register.register(register.user.name, register.user.email, register.user.password)" id="submit-register"><span>Register</span></button>
+</form>
+<div id="register-click">If you are already register<a ui-sref="login"> Log In here</a></div>
+<div id="close-register">X</div>
+</div>
+</div>
