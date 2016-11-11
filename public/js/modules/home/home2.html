@@ -1,16 +1,11 @@
-<div class="upload-container">
-    <div class="upload-submit-container">
-        <button ui-sref="upload" id="pop-upload">Upload your link </button>
-    </div>
-</div>
-
 <div class="links-container" >
     <div class="display-links" ng-repeat="link in home.data">
         <div class="container-content">
             <div id="link-counter">{{$index +1}}</div>
-            <img id="image-link" class="cardLink" src="{{link.ogimage}}" alt=""/>
-            <div id="link-counter">rank goes here</div>
-            <div id="link-text"><a href="{{link.url}}">{{link.url}}</a></br>Link drescription: {{link.title}}</div>
+            <div>
+                <img id="image-link" class="cardLink" src="{{link.ogimage}}" alt=""/>
+            </div>
+            <div id="link-text"><a href="{{link.url}}">{{link.title}}</a></div>
         </div>
         <div class="comment-user-content">
             <div class="linkDate">{{link.creation_date}}</div>
