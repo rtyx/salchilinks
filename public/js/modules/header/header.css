@@ -78,13 +78,25 @@ body{
 
 
 .log-out-display{
+	position:relative;
+	display:flex;
+	flex-direction:row;
+	margin-left:15%;
 	width:200px;
 	height:50px;
 }
 
 #log-out{
 	color:#black;
-	font-size:2em;
+	font-size:1em;
+	border:none;
+	background-color:transparent;
+	font-family:Oswald, sans-serif;
+}
+
+#myprofile{
+	color:#black;
+	font-size:1em;
 	border:none;
 	background-color:transparent;
 	font-family:Oswald, sans-serif;

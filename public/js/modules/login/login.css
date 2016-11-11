@@ -1,11 +1,11 @@
 .form-log-in{
 	position:relative;
-	margin-top:20%;
+	margin-top:10%;
 	margin-left:28%;
 	width:550px;
 	height:400px;
 	background-color:white;
-	box-shadow: 5px 5px 30px lightgrey;
+	box-shadow:5px 5px 30px lightgrey;
 }
 
 #login-background{
