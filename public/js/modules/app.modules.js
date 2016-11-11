@@ -8,6 +8,7 @@
             'ui.router',
 
             // Custom modules.
+            // 'app.link',
             'app.router',
             'app.upload',
             'app.home',
