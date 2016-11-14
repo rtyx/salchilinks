@@ -27,53 +27,48 @@ router.use(function(req, res, next) {
 // HOME
 
 router.route('/home')
-    .get(function(req, res) {
-        aux.getLinks(100)
-        .then(function(response) {
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
+.get(function(req, res) {
+    aux.getLinks(100)
+    .then(function(response) {
+        // var idArray = [];
+        // for (var i = 0; i < response.rows.length; i++) {
+        //     if (idArray.indexOf(response.rows[i].id) == -1) {
+        //         console.log("NOT THERE");
+        //         idArray.push(response.rows[i].id);
+        //         response.rows[i].comments =+ 1;
+        //     } else {
+        //         response.rows[i].comments =+ 1;
+        //         console.log("ALREADY THERE THERE");
+        //     }
+        // }
+        // console.log(idArray);
+        res.json(response.rows);
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: error
         });
     });
+});
 
 router.route('/register')
-    .get(function(req, res) {
-        res.json(req.session.user);
-    })
-    .post(function(req, res) {
-        console.log(req.session);
-        if (req.session.user) {
-            res.redirect('/');
-        } else {
-            aux.registerUser(req.body.user_name, req.body.email, req.body.password)
-            .then(function(response) {
-                req.session.user = {
-                    logstatus: true,
-                    id: response.rows[0].id
-                };
-                console.log(req.session);
-                res.json(response.rows);
-            })
-            .catch(function(error) {
-                console.log(error(error));
-                res.json({
-                    success: false,
-                    reason: error
-                });
-            });
-        }
-    });
-
-router.route('/login')
-    .post(function(req, res) {
-        aux.logInUser(req.body.email, req.body.password)
+.get(function(req, res) {
+    res.json(req.session.user);
+})
+.post(function(req, res) {
+    console.log(req.session);
+    if (req.session.user) {
+        res.redirect('/');
+    } else {
+        aux.registerUser(req.body.user_name, req.body.email, req.body.password)
         .then(function(response) {
-            console.log(response.rows);
+            req.session.user = {
+                logstatus: true,
+                id: response.rows[0].id
+            };
+            console.log(req.session);
             res.json(response.rows);
         })
         .catch(function(error) {
@@ -83,7 +78,24 @@ router.route('/login')
                 reason: error
             });
         });
+    }
+});
+
+router.route('/login')
+.post(function(req, res) {
+    aux.logInUser(req.body.email, req.body.password)
+    .then(function(response) {
+        console.log(response.rows);
+        res.json(response.rows);
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: error
+        });
     });
+});
 
 // router.get('/logout', function(req,res){
 //     if(req.session.user){
@@ -92,54 +104,102 @@ router.route('/login')
 // });
 
 // router.get('/del/profile', function(req,res){
-    // var query = 'DELETE FROM petition WHERE user_id = $1';
-    // var params = [req.session.user.id];
-    // db.dbquery(query, params).then(function(){
-    //     res.redirect('/petition');
-    // })
+// var query = 'DELETE FROM petition WHERE user_id = $1';
+// var params = [req.session.user.id];
+// db.dbquery(query, params).then(function(){
+//     res.redirect('/petition');
+// })
 // });
 
 router.route('/upload')
-    .get(function(req, res) {
-        res.json(req.session.user);
+.get(function(req, res) {
+    res.json(req.session.user);
+})
+.post(function(req, res) {
+    aux.insertLink(req.session.user.id, req.body.url, req.body.title)
+    .then(function() {
+        console.log("Done!");
+        res.redirect('/');
     })
-    .post(function(req, res) {
-        aux.insertLink(req.session.user.id, req.body.url, req.body.title)
-        .then(function() {
-            console.log("Done!");
-            res.redirect('/');
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: "Something went wrong!"
-            });
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
         });
     });
+});
 
 router.route('/profile/:user')
-    .get(function(req, res) {
-        var user = req.url.split('/').pop();
-        aux.getProfile(user)
-        .then(function(response) {
-            console.log(response);
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
+.get(function(req, res) {
+    var user = req.url.split('/').pop();
+    var name;
+    var email;
+    var id;
+    aux.getProfile(user)
+    .then(function(response) {
+        name = response.rows[0].user_name;
+        email = response.rows[0].email;
+        id = response.rows[0].id;
+        return aux.getUserLinks(id);
+    })
+    .then(function(response) {
+        res.json({
+            id: id,
+            name: name,
+            email: email,
+            links: response.rows
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: error
         });
     });
+});
+
+router.route('/link/:id')
+.get(function(req, res) {
+    var id = req.url.split('/').pop();
+    var user, title, url, date, ogtitle, ogimage, ogdescription;
+    aux.getLink(id)
+    .then(function(response) {
+        user = response.rows[0].user_name;
+        title = response.rows[0].title;
+        url = response.rows[0].url;
+        ogtitle = response.rows[0].ogtitle;
+        ogimage = response.rows[0].ogimage;
+        date = response.rows[0].creation_date;
+        return aux.getComments(id);
+    })
+    .then(function(response) {
+        res.json({
+            user: user,
+            title: title,
+            url: url,
+            date: date,
+            ogtitle: ogtitle,
+            ogimage: ogimage,
+            ogdescription: ogdescription,
+            comments: response.rows
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: error
+        });
+    });
+});
 
 router.route('/logout')
-    .get(function(req, res) {
-        req.session = null;
-        res.redirect('/#/home');
-    });
+.get(function(req, res) {
+    req.session = null;
+    res.redirect('/#/home');
+});
 
 // router.route('/confirmLogin')
 //     .get(function(req, res) {

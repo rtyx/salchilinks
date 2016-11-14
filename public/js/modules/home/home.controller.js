@@ -9,6 +9,7 @@
         var vm = this;
 
         $http.get('/home').then(function(resp) {
+            console.log(resp.data);
             vm.data = resp.data;
         });
         // vm.data = linksData;

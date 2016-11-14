@@ -1,36 +1,38 @@
 <div class="links-container">
 	<div class="display-links">
-			<div id="link"></div>
-			<div id="image-link"></div>
+		<div id="link">link {{link.title}}</div>
+		<div id="image-link">
+			<img src="{{link.ogimage}}" alt="" />
+		</div>
 	</div>
 	<div class="user-content">
-			<div id="username-link"></div>
-			<div id="time-link"></div>
-			<div id="source-link"></div>
+		<div id="username-link">user {{link.user}}</div>
+		<div id="time-link">time {{link.date}}</div>
+		<div id="source-link"></div>
 	</div>
 </div>
 
 <div class="comment-container">
 	<div class="display-comments">
 		<div id="comment-display-container">Comments</div>
-	<div class="info">
-		<div class="comment-content">
-			<div id="comment"></div>
-		</div>
-		<div class="info-content-comment">
-			<div id="user-name"></div>
-			<div id="time-comment"></div>
+		<div class="info" ng-repeat="comment in link.comments">
+			<div class="comment-content">
+				<div id="comment">{{comment.comment}}</div>
+			</div>
+			<div class="info-content-comment">
+				<div id="user-name">{{comment.user_name}}</div>
+				<div id="time-comment">{{comment.creation_date}}</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="add-comment-container">
-	<div class="display-add-container">
-		<div id="add-comment-title">Add a comment</div>
-		<input id="title-comment" type="text">Title</input>
-		<textarea id="comment-add">Comment</textarea>
-		<button id="add-comment-submit" type="submit">Submit</button>
-	</div>
+<!-- <div class="add-comment-container">
+<div class="display-add-container">
+<div id="add-comment-title">Add a comment</div>
+<input id="title-comment" type="text">Title</input>
+<textarea id="comment-add">Comment</textarea>
+<button id="add-comment-submit" type="submit">Submit</button>
 </div>
+</div> -->
 </body>
