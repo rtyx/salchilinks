@@ -4,15 +4,19 @@
     .controller("homeCtrl", homeControl);
 
     homeControl.$inject = ['$http'];
-
+    
     function homeControl($http) {
         var vm = this;
 
         $http.get('/home').then(function(resp) {
             console.log(resp.data);
-            vm.data = resp.data;
+            if (resp.data.user) {
+                vm.activeUser = resp.data.user.name;
+            } else {
+                vm.activeUser = "nigga";
+            }
+            vm.data = resp.data.links;
         });
-        // vm.data = linksData;
 
         vm.activeLink = {};
         vm.changeActiveLink = changeActiveLink;

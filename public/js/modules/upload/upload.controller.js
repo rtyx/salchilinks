@@ -9,12 +9,12 @@
     function uploadControl($http, $state) {
         var vm = this;
 
-        // $http.get('/upload').then(function(resp) {
-        //     console.log(resp);
-        //     // vm.csrfToken = resp.data.csrfToken;
-        //     // console.log(resp.data);
-        //     // console.log(vm.csrfToken);
-        // });
+        $http.get('/upload').then(function(resp) {
+            if (!resp.data.logstatus) {
+                console.log("No user is logged in!");
+                $state.go('login');
+            }
+        });
 
         vm.uploadLink = uploadLink;
 

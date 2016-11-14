@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="user-content">
-		<div id="username-link">user {{link.user}}</div>
+		<div id="username-link"><a href="#/profile?user={{link.user}}">{{link.user}}</a></div>
 		<div id="time-link">time {{link.date}}</div>
 		<div id="source-link"></div>
 	</div>
@@ -20,19 +20,17 @@
 				<div id="comment">{{comment.comment}}</div>
 			</div>
 			<div class="info-content-comment">
-				<div id="user-name">{{comment.user_name}}</div>
+				<div id="user-name"><a href="#/profile?user={{comment.user_name}}">{{comment.user_name}}</a></div>
 				<div id="time-comment">{{comment.creation_date}}</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- <div class="add-comment-container">
-<div class="display-add-container">
-<div id="add-comment-title">Add a comment</div>
-<input id="title-comment" type="text">Title</input>
-<textarea id="comment-add">Comment</textarea>
-<button id="add-comment-submit" type="submit">Submit</button>
+<div class="add-comment-container">
+	<div class="display-add-container">
+		<div id="add-comment-title">Add a comment</div>
+		<textarea ng-model="link.newComment" id="comment-add">Comment</textarea>
+		<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.newComment)">Submit</button>
+	</div>
 </div>
-</div> -->
-</body>

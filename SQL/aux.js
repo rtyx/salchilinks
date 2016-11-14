@@ -8,8 +8,8 @@ const parser = require('./parser.js');
 module.exports = {
     getLinks: function (count) {
         console.log(chalk.blue("Getting links..."));
-        return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
-        // return db.usedb('SELECT links.id, links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id JOIN comments ON comments.link_id = links.id ORDER BY creation_date DESC LIMIT $1;', [count]);
+        // return db.usedb('SELECT * FROM links ORDER BY creation_date DESC LIMIT $1;', [count]);
+        return db.usedb('SELECT links.id, links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id ORDER BY creation_date DESC LIMIT $1;', [count]);
         // db.usdb('SELECT * FROM comments WHERE link_id = $1;')
     },
     getLink: function (id) {
@@ -48,15 +48,16 @@ module.exports = {
     registerUser: function (user_name, email, password) {
         return hash.hashPassword(password).then(function(hashedPassword){
             console.log(chalk.blue("Registering user..."));
-            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3) RETURNING id;', [user_name, email, hashedPassword]);
+            return db.usedb('INSERT INTO users (user_name, email, password) VALUES ($1, $2, $3) RETURNING id, user_name;', [user_name, email, hashedPassword]);
         });
     },
     logInUser: function(email, password) {
         console.log(chalk.blue("Logging " + email + " in..."));
-        db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
-            hash.checkPassword(password, userInfo.rows[0].password).then(function(passMatch){
+        return db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
+            return hash.checkPassword(password, userInfo.rows[0].password).then(function(passMatch){
                 if(passMatch){
                     console.log('matched');
+                    return db.usedb('SELECT * FROM users WHERE email = $1;', [email]);
                 } else {
                     console.log('did not match');
                 }

@@ -19,9 +19,10 @@
 				<div id="link-post-title">Links you post </div>
 			</div>
 			<div class="container-post" ng-repeat="link in user.links">
-				<div id="image-link-post"><img src="{{link.ogimage}}" alt="" /></div>
-				<div id="link-post">{{link.title}}</div>
+				<div id="image-link-post"><img src="{{link.ogimage}}" alt=""/></div>
+				<div id="link-post"><a href="#/link?id={{link.id}}">{{link.title}}</a></div>
 				<div id="link-date">{{link.creation_date}}</div>
+
 			</div>
 		</div>
 

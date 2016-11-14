@@ -42,7 +42,9 @@ router.route('/home')
         //     }
         // }
         // console.log(idArray);
-        res.json(response.rows);
+        res.json({
+            user: req.session.user,
+            links: response.rows});
     })
     .catch(function(error) {
         console.log(error(error));
@@ -59,33 +61,36 @@ router.route('/register')
 })
 .post(function(req, res) {
     console.log(req.session);
-    if (req.session.user) {
-        res.redirect('/');
-    } else {
-        aux.registerUser(req.body.user_name, req.body.email, req.body.password)
-        .then(function(response) {
-            req.session.user = {
-                logstatus: true,
-                id: response.rows[0].id
-            };
-            console.log(req.session);
-            res.json(response.rows);
-        })
-        .catch(function(error) {
-            console.log(error(error));
-            res.json({
-                success: false,
-                reason: error
-            });
+    aux.registerUser(req.body.user_name, req.body.email, req.body.password)
+    .then(function(response) {
+        req.session.user = {
+            logstatus: true,
+            id: response.rows[0].id,
+            name: response.rows[0].user_name
+        };
+        res.json(response.rows);
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: error
         });
-    }
+    });
 });
 
 router.route('/login')
+.get(function(req, res) {
+    res.json(req.session.user);
+})
 .post(function(req, res) {
     aux.logInUser(req.body.email, req.body.password)
     .then(function(response) {
-        console.log(response.rows);
+        req.session.user = {
+            logstatus: true,
+            id: response.rows[0].id,
+            name: response.rows[0].user_name
+        };
         res.json(response.rows);
     })
     .catch(function(error) {
