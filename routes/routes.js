@@ -70,9 +70,16 @@ router.route('/register')
     });
 
 router.route('/login')
+    .get(function(req, res) {
+        res.json(req.session.user);
+    })
     .post(function(req, res) {
         aux.logInUser(req.body.email, req.body.password)
         .then(function(response) {
+            req.session.user = {
+                logstatus: true,
+                id: response.rows[0].id
+            };
             console.log(response.rows);
             res.json(response.rows);
         })
