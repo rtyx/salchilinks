@@ -1,9 +1,9 @@
 .form-register{
 	position:relative;
-	margin-top:10%;
+	margin-top:7%;
 	margin-left:35%;
-	width:500px;
-	height:600px;
+	width:400px;
+	height:500px;
 	background-color:white;
 	box-shadow: 5px 5px 30px lightgrey;
 }
@@ -26,26 +26,26 @@
 
 #register{
 	position:relative;
-	top:50px;
-	margin-left:40%;
+	top:30px;
+	margin-left:25%;
 	width:550px;
 	height:50px;
 	font-family:lemonmilk;
 	color:black;
-	font-size:30px;
+	font-size:1.5em;
 }
 
 .register-in{
 	position:relative;
-	margin-top:20%;
+	margin-top:10%;
 	margin-left:0%;
-	width:520px;
+	width:400px;
 	height:320px;
 	background-color:transparent;
 	text-align: center;
 	color:black;
 	font-family:caviardreams;
-	font-size:20px;
+	font-size:1.2em;
 	line-height:100%;
 }
 
@@ -70,8 +70,9 @@
 	text-align: center;
 	font-family:caviardreams;
 	font-size:15px;
-	color:lightblue;
+	color:black;
 	border:none;
+	border-bottom:0.5px dotted lightgrey;
 	width:100px;
 	-webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
@@ -81,6 +82,7 @@
 	background:transparent;
 	width:200px;
 	outline:none;
+	color:lightblue;
 	border:none;
 	border-bottom:2px solid lightblue;
 }
@@ -91,7 +93,7 @@
 	position:relative;
 	margin-top:10%;
 	font-family:lemonmilk;
-	font-size:20px;
+	font-size:1em;
 	width:120px;
 	border:1px solid black;
 	background-color:transparent;
@@ -156,8 +158,8 @@ a:hover{
 #register-click{
 	position:relative;
 	font-family:caviardreams;
-	margin-top:8%;
-	margin-left:33%;
+	margin-top:1%;
+	margin-left:20%;
 	font-size:12px;
 }
 
@@ -166,7 +168,7 @@ a:hover{
 	font-family:lemonmilk;
 	font-size:30px;
 	top:0%;
-	left:85%;
+	left:65%;
 	color:black;
 }
 

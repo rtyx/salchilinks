@@ -15,10 +15,10 @@ img {
 
 .links-container{
 	position:relative;
-	width:600px;
+	width:700px;
 	height:200px;
 	border:1px solid black;
-	margin-left:20%;
+	margin-left:10%;
 	top:20%;
 }
 
@@ -64,7 +64,7 @@ img {
 
 .comment-container{
 	position:relative;
-	width:800px;
+	width:500px;
 	height:500px;
 	border:1px solid black;
 	left:15%;
@@ -82,7 +82,7 @@ img {
 
 #comment-display-container{
 	background: black;
-	width:600px;
+	width:500px;
 	height:50px;
 	color:white;
 }
