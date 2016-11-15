@@ -18,12 +18,18 @@
             vm.data = resp.data.links;
         });
 
-        vm.activeLink = {};
-        vm.changeActiveLink = changeActiveLink;
+        // vm.favLink = favLink;
 
-        function changeActiveLink(index) {
-            vm.activeLink = index;
-            console.log(index);
-        }
+        // function favLink(linkId, userId) {
+        //
+        // }
+
+        // vm.activeLink = {};
+        // vm.changeActiveLink = changeActiveLink;
+        //
+        // function changeActiveLink(index) {
+        //     vm.activeLink = index;
+        //     console.log(index);
+        // }
     }
 })();

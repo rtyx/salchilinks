@@ -11,7 +11,8 @@
 
         $http.get('/profile/' + $stateParams.user).then(function(resp) {
             if (!resp.data.session) {
-                $state.go('login');
+                console.log("user not logged in");
+                // $state.go('login');
             }
             vm.id = resp.data.id;
             vm.name = resp.data.name;

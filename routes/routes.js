@@ -227,6 +227,12 @@ router.route('/reply')
     });
 });
 
+router.route('/fav')
+.post(function(req, res) {
+    var linkId = req.body.link;
+    var userId = req.session.user;
+})
+
 router.route('/logout')
 .get(function(req, res) {
     req.session = null;

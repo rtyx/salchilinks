@@ -12,7 +12,7 @@
         $http.get('/upload').then(function(resp) {
             if (!resp.data.logstatus) {
                 console.log("No user is logged in!");
-                $state.go('login');
+                $state.go('upload');
             }
         });
 
