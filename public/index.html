@@ -1,91 +1,95 @@
 <!DOCTYPE html>
 
 <html ng-app="app">
-    <head>
-        <title>LINKS LINKS LINKS</title>
-        <link rel="stylesheet" type="text/css" href="./js/modules/link/link.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/profile/profile.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/upload/upload.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/login/login.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/register/register.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/home/home.css">
-        <link rel="stylesheet" type="text/css" href="./js/modules/header/header.css">
-        <link href="https://fonts.googleapis.com/css?family=Coiny|Lobster" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Oswald" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Raleway" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
-        <script src="http://unpkg.com/angular-ui-router@latest/release/angular-ui-router.min.js"></script>
+<head>
+    <title>LINKS LINKS LINKS</title>
+    <link rel="stylesheet" type="text/css" href="./js/modules/link/link.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/profile/profile.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/upload/upload.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/login/login.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/register/register.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/home/home.css">
+    <link rel="stylesheet" type="text/css" href="./js/modules/header/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Coiny|Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+    <script src="http://unpkg.com/angular-ui-router@latest/release/angular-ui-router.min.js"></script>
+</head>
 
-    </head>
-
-    <body>
-
-        <div class="header-header">
-            <div ui-sref="home" class="header-display">
-                <img id="company-logo" src="../../assets/linkit-logo.png" width="10%">
-                <div id="title-display">Link It</div>
+<body>
+    <div class="header-header">
+        <div ui-sref="home" class="header-display">
+            <img id="company-logo" src="../../assets/linkit-logo.png" width="10%">
+            <div id="title-display">Link It</div>
+        </div>
+        <div class="menu-display">
+            <div ui-sref="login" class ="logIn-button">
+                <img id="logIn-logo" src="../../assets/logIn-logo.png" width="20%">
+                <button id="signIn" class="button-menu">Log In</button>
             </div>
-            <div class="menu-display">
-                <div ui-sref="login" class ="logIn-button">
-                    <img id="logIn-logo" src="../../assets/logIn-logo.png" width="20%">
-                    <button id="signIn" class="button-menu">Log In</button>
-                </div>
-                <div ui-sref="register" class ="register-button">
-                    <img id="register-logo" src="../../assets/register-logo.png" width="20%">
-                    <button id="register-button-logo" class="button-menu">Register</button>
-                </div>
-                <div ui-sref="upload" class="upload-button">
-                    <img id="upload-logo" src="../../assets/upload-logo.png" width="20%">
-                    <button id="upload-content" class="button-menu">Upload</button>
-                </div>
+            <div ui-sref="register" class ="register-button">
+                <img id="register-logo" src="../../assets/register-logo.png" width="20%">
+                <button id="register-button-logo" class="button-menu">Register</button>
+            </div>
+            <div ui-sref="upload" class="upload-button">
+                <img id="upload-logo" src="../../assets/upload-logo.png" width="20%">
+                <button id="upload-content" class="button-menu">Upload</button>
+            </div>
             <div class="log-out-display">
-                <button id="myprofile" class="button-menu">My Profile</button>
+                <!-- <button id="myprofile" class="button-menu">
+                    <a href="#/profile/">My profile</a>
+                </button> -->
                 <p>|</p>
+<<<<<<< HEAD
+=======
+                <!-- <button id="log-out" class="button-menu">Log Out</button> -->
+>>>>>>> 33647d0ff1f559a401570b643c77fb8151cda646
                 <button id="log-out">
                     <a href="/logout">Log out</a>
                 </button>
             </div>
-            </div>
         </div>
+    </div>
 
-        <div class="content">
-            <div ui-view>
+    <div class="content">
+        <div ui-view>
 
-                <!-- HERE'S WHERE THE CONTENT IS INJECTED -->
+            <!-- HERE'S WHERE THE CONTENT IS INJECTED -->
 
-            </div>
         </div>
+    </div>
 
-        <!-- APP -->
-        <script src="./js/modules/app.modules.js"></script>
-        <!-- ROUTER -->
-        <script src="./js/modules/app.router.js"></script>
-        <!-- HEADER -->
-        <script src="./js/modules/header/header.module.js"></script>
-        <script src="./js/modules/header/header.controller.js"></script>
-        <!-- HOME -->
-        <script src="./js/modules/home/home.module.js"></script>
-        <script src="./js/modules/home/home.controller.js"></script>
-        <!-- REGISTER -->
-        <script src="./js/modules/register/register.module.js"></script>
-        <script src="./js/modules/register/register.controller.js"></script>
-        <!-- UPLOAD -->
-        <script src="./js/modules/upload/upload.module.js"></script>
-        <script src="./js/modules/upload/upload.controller.js"></script>
-        <!-- COMMENTS -->
-        <!-- <script src="./js/modules/comments/comments.module.js"></script>
-        <script src="./js/modules/comments/comments.controller.js"></script> -->
-        <!-- LINK -->
-        <script src="./js/modules/link/link.module.js"></script>
-        <script src="./js/modules/link/link.controller.js"></script>
-        <!-- LOGIN -->
-        <script src="./js/modules/login/login.module.js"></script>
-        <script src="./js/modules/login/login.controller.js"></script>
-        <!-- PROFILE -->
-        <script src="./js/modules/profile/profile.module.js"></script>
-        <script src="./js/modules/profile/profile.controller.js"></script>
-    </body>
+    <!-- APP -->
+    <script src="./js/modules/app.modules.js"></script>
+    <!-- ROUTER -->
+    <script src="./js/modules/app.router.js"></script>
+    <!-- HEADER -->
+    <script src="./js/modules/header/header.module.js"></script>
+    <script src="./js/modules/header/header.controller.js"></script>
+    <!-- HOME -->
+    <script src="./js/modules/home/home.module.js"></script>
+    <script src="./js/modules/home/home.controller.js"></script>
+    <!-- REGISTER -->
+    <script src="./js/modules/register/register.module.js"></script>
+    <script src="./js/modules/register/register.controller.js"></script>
+    <!-- UPLOAD -->
+    <script src="./js/modules/upload/upload.module.js"></script>
+    <script src="./js/modules/upload/upload.controller.js"></script>
+    <!-- COMMENTS -->
+    <!-- <script src="./js/modules/comments/comments.module.js"></script>
+    <script src="./js/modules/comments/comments.controller.js"></script> -->
+    <!-- LINK -->
+    <script src="./js/modules/link/link.module.js"></script>
+    <script src="./js/modules/link/link.controller.js"></script>
+    <!-- LOGIN -->
+    <script src="./js/modules/login/login.module.js"></script>
+    <script src="./js/modules/login/login.controller.js"></script>
+    <!-- PROFILE -->
+    <script src="./js/modules/profile/profile.module.js"></script>
+    <script src="./js/modules/profile/profile.controller.js"></script>
+</body>
 </html>

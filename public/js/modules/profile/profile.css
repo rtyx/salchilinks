@@ -79,6 +79,12 @@
 	width:100px;
 	height:100px;
 	border:1px solid black;
+	overflow: hidden;
+}
+
+img {
+	height: 100%;
+	width: auto;
 }
 
 #link-post{

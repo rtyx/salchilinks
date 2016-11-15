@@ -46,17 +46,24 @@
             })
 
             .state('link', {
-                url: '/link',
+                url: '/link?id',
                 templateUrl: 'js/modules/link/link.html',
                 controller: 'linkCtrl',
                 controllerAs: 'link'
             })
 
             .state('profile', {
-                url: '/profile',
+                url: '/profile?user',
                 templateUrl: 'js/modules/profile/profile.html',
                 controller: 'profileCtrl',
-                controllerAs: 'profile'
-            });
+                controllerAs: 'user'
+            })
+
+            // .state('profile.user', {
+            //     url: '/:user',
+            //     templateUrl: 'js/modules/profile/profile.html',
+            //     controller: 'profileCtrl',
+            //     controllerAs: 'profile'
+            // });
     });
 })();
