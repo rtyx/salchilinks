@@ -10,9 +10,9 @@
         var vm = this;
 
         $http.get('/profile/' + $stateParams.user).then(function(resp) {
-            // if (!resp.data.user) {
-            //     $state.go('home');
-            // }
+            if (!resp.data.session) {
+                $state.go('login');
+            }
             vm.id = resp.data.id;
             vm.name = resp.data.name;
             vm.email = resp.data.email;

@@ -80,7 +80,11 @@ module.exports = {
     getComments: function(linkId) {
         console.log(chalk.blue("Getting comments from the server..."));
         // return db.usedb('SELECT links.id, links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id WHERE links.id = $1;', [id]);
-        return db.usedb('SELECT comments.id, comments.link_id, comments.user_id, comments.comment, comments.creation_date, users.user_name FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE link_id = $1 ORDER BY creation_date DESC LIMIT 10;', [linkId]);
+        return db.usedb('SELECT comments.id, comments.link_id, comments.user_id, comments.comment, comments.creation_date, users.user_name FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE link_id = $1 AND comments.parent is null ORDER BY creation_date DESC LIMIT 10;', [linkId]);
+    },
+    getReplies: function(parent) {
+        console.log(chalk.blue("Getting replies for the comment " + parent + " from the server..."));
+        return db.usedb('SELECT * FROM comments WHERE parent = $1 ORDER BY creation_date DESC;', [parent]);
     },
     getUserComments: function(userId) {
         console.log(chalk.blue("Getting comments from the user..."));

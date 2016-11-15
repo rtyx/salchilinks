@@ -216,6 +216,17 @@ router.route('/comment')
     });
 });
 
+router.route('/reply')
+.get(function(req, res) {
+    var parent = req.query.parent;
+    aux.getReplies(parent)
+    .then(function(response) {
+        res.json({
+            replies: response.rows
+        });
+    });
+});
+
 router.route('/logout')
 .get(function(req, res) {
     req.session = null;

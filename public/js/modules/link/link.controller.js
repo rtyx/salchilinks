@@ -11,7 +11,7 @@
         $http.get('/link/' + $stateParams.id).then(function(resp) {
 
             if (!resp.data.session) {
-                $state.go('home');
+                $state.go('login');
             }
 
             vm.title = resp.data.title;
@@ -52,9 +52,21 @@
 
             vm.showReplies = showReplies;
 
-            function showReplies(id) {
-                console.log("Showing replies to comment " + id + "...");
-                $('#repliesBox_' + id).css('display', 'block');
+            function showReplies(index, parent) {
+                console.log("Showing in " + index + " replies to comment " + parent + "...");
+                $('#repliesBox_' + parent).css('display', 'block');
+                var config = {
+                    method: 'GET',
+                    params: {
+                        parent: parent
+                    },
+                    url: '/reply'
+                };
+                $http(config).then(function(resp) {
+                    console.log(vm.comments[index]);
+                    vm.comments[index].replies = resp.data.replies;
+                    console.log(resp.data.replies);
+                });
             }
         });
     }

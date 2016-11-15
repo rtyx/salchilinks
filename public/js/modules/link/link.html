@@ -19,16 +19,31 @@
 			<div ng-click="link.showReplyBox(comment.id)" class="reply">
 				REPLY
 			</div>
-			<div ng-click="link.showReplies(comment.id)" class="reply">
+			<div ng-click="link.showReplies($index, comment.id)" class="reply">
 				||| SHOW REPLIES
 			</div>
 			<div class="comment-content">
 				<!-- <div class="hidden">{{comment.id}}</div> -->
 				<div id="comment">{{comment.comment}}</div>
 			</div>
-			<div class="hidden" id="replyBox_{{comment.id}}">
+			<div class="hidden replyBox" id="replyBox_{{comment.id}}">
 				<textarea ng-model="link.reply" id="comment-add">Reply</textarea>
 				<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.reply, comment.id)">Submit</button>
+			</div>
+			<div class="replies" id="repliesBox_{{comment.id}}" >
+				<div class="info-content-comment" ng-repeat="reply in comment.replies">
+					<div ng-click="link.showReplyBox(reply.id)" class="reply">
+						REPLY
+					</div>
+					<div ng-click="link.showReplies($index, reply.id)" class="reply">
+						||| SHOW REPLIES
+					</div>
+					<div class="comment-content">
+						<div id="comment">{{reply.comment}}</div>
+					</div>
+					<div id="user-name"><a href="#/profile?user={{reply.user_name}}">{{reply.user_name}}</a></div>
+					<div id="time-comment">{{reply.creation_date}}</div>
+				</div>
 			</div>
 			<div class="info-content-comment">
 				<div id="user-name"><a href="#/profile?user={{comment.user_name}}">{{comment.user_name}}</a></div>
