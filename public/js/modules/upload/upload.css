@@ -1,7 +1,7 @@
 .form-upload{
 	position:relative;
 	margin-top:10%;
-	margin-left:28%;
+	margin-left:35%;
 	width:500px;
 	height:400px;
 	background-color:white;
@@ -12,6 +12,8 @@
 	position:absolute;
 	left:-14%;
 	top:63%;
+	width:45%;
+	height:60%;
 }
 #form-background{
 	position:relative;
@@ -135,7 +137,7 @@
 	transform: scaleX(1);
 }
 
-#close-form{
+#close-form-upload{
 	position:absolute;
 	font-family:lemonmilk;
 	font-size:20px;
@@ -144,6 +146,6 @@
 	color:black;
 }
 
-#close-form:hover{
+#close-form-upload:hover{
 	color:lightblue;
 }
