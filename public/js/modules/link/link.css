@@ -8,6 +8,10 @@ body{
 	overflow: hidden;
 }
 
+.hidden {
+	display: none;
+}
+
 img {
 	height: 50px;
 	width: 50px;

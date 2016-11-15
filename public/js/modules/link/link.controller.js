@@ -10,9 +10,10 @@
 
         $http.get('/link/' + $stateParams.id).then(function(resp) {
 
-            console.log(resp);
+            if (!resp.data.session) {
+                $state.go('home');
+            }
 
-            vm.id = resp.data.id;
             vm.title = resp.data.title;
             vm.url = resp.data.url;
             vm.date = resp.data.date;
@@ -21,12 +22,39 @@
             vm.ogtitle = resp.data.ogtitle;
             vm.comments = resp.data.comments;
 
-            // console.log(vm);
+            vm.postComment = postComment;
 
-            if (resp.data.logstatus) {
-                console.log(this);
-                // console.log("User " + resp.data.id + " is logged in!");
-                // $state.go('home');
+            function postComment(newComment, parent) {
+                console.log("Posting comment...");
+                var config = {
+                    method: 'POST',
+                    data: {
+                        linkId : $stateParams.id,
+                        author : resp.data.session.id,
+                        comment : newComment,
+                        parent: parent
+                    },
+                    url: '/comment'
+                };
+                $http(config);
+                console.log("Posted!");
+                setTimeout(function () {
+                    $state.reload();
+                }, 1000);
+            }
+
+            vm.showReplyBox = showReplyBox;
+
+            function showReplyBox(id) {
+                console.log("Replying comment " + id + "...");
+                $('#replyBox_' + id).css('display', 'block');
+            }
+
+            vm.showReplies = showReplies;
+
+            function showReplies(id) {
+                console.log("Showing replies to comment " + id + "...");
+                $('#repliesBox_' + id).css('display', 'block');
             }
         });
     }

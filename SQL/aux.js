@@ -77,16 +77,19 @@ module.exports = {
         // return db.usedb('SELECT links.title, links.url, links.creation_date, users.user_name, users.email, users.id FROM links LEFT JOIN users ON links.user_id = $1 ORDER BY creation_date DESC LIMIT 5;', [userId]);
         return db.usedb('SELECT * FROM links WHERE user_id = $1 ORDER BY creation_date DESC LIMIT 50;', [userId]);
     },
-    getComments: function(id) {
+    getComments: function(linkId) {
         console.log(chalk.blue("Getting comments from the server..."));
         // return db.usedb('SELECT links.id, links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id WHERE links.id = $1;', [id]);
-        return db.usedb('SELECT comments.link_id, comments.user_id, comments.comment, comments.creation_date, users.user_name FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE link_id = $1 ORDER BY creation_date DESC LIMIT 10;', [id]);
+        return db.usedb('SELECT comments.id, comments.link_id, comments.user_id, comments.comment, comments.creation_date, users.user_name FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE link_id = $1 ORDER BY creation_date DESC LIMIT 10;', [linkId]);
     },
-    postComment: function(link_id, author, comment) {
+    getUserComments: function(userId) {
+        console.log(chalk.blue("Getting comments from the user..."));
+        return db.usedb('SELECT * FROM comments WHERE user_id = $1 ORDER BY creation_date DESC;', [userId]);
+    },
+    postComment: function(link_id, author, comment, parent) {
         console.log(chalk.blue("Saving comment..."));
-        db.usedb('INSERT INTO comments (link_id, user_id, comment) VALUES ($1, $2, $3) RETURNING id;', [link_id, author, comment]);
-        // db.usedb('DECLARE @a int SET @a = 1 UPDATE links SET comments = @a, @a=@a+1  WHERE id = $1', [link_id]);
-        db.usedb('UPDATE links SET comments = comments + 1 WHERE id = $1', [link_id]);
+        db.usedb('INSERT INTO comments (link_id, user_id, comment, parent) VALUES ($1, $2, $3, $4) RETURNING id;', [link_id, author, comment, parent]);
+        return db.usedb('UPDATE links SET comments = comments + 1 WHERE id = $1', [link_id]);
     },
     deleteComment: function(id) {
         console.log(chalk.blue("Deleting comment " + id + "..."));

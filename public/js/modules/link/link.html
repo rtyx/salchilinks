@@ -16,8 +16,19 @@
 	<div class="display-comments">
 		<div id="comment-display-container">Comments</div>
 		<div class="info" ng-repeat="comment in link.comments">
+			<div ng-click="link.showReplyBox(comment.id)" class="reply">
+				REPLY
+			</div>
+			<div ng-click="link.showReplies(comment.id)" class="reply">
+				||| SHOW REPLIES
+			</div>
 			<div class="comment-content">
+				<!-- <div class="hidden">{{comment.id}}</div> -->
 				<div id="comment">{{comment.comment}}</div>
+			</div>
+			<div class="hidden" id="replyBox_{{comment.id}}">
+				<textarea ng-model="link.reply" id="comment-add">Reply</textarea>
+				<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.reply, comment.id)">Submit</button>
 			</div>
 			<div class="info-content-comment">
 				<div id="user-name"><a href="#/profile?user={{comment.user_name}}">{{comment.user_name}}</a></div>

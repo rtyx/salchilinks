@@ -4,7 +4,7 @@
     .controller("homeCtrl", homeControl);
 
     homeControl.$inject = ['$http'];
-    
+
     function homeControl($http) {
         var vm = this;
 
@@ -13,7 +13,7 @@
             if (resp.data.user) {
                 vm.activeUser = resp.data.user.name;
             } else {
-                vm.activeUser = "nigga";
+                vm.activeUser = "there!";
             }
             vm.data = resp.data.links;
         });
