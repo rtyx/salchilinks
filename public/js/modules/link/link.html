@@ -8,13 +8,13 @@
 	<div class="user-content">
 		<div id="username-link"><a href="#/profile?user={{link.user}}">{{link.user}}</a></div>
 		<div id="time-link">time {{link.date}}</div>
-		<div id="source-link"></div>
+		<div ng-click="link.fav(link.id)" class="">{{link.favs}} FAV</div>
 	</div>
 </div>
 
 <div class="comment-container">
 	<div class="display-comments">
-		<div id="comment-display-container">Comments</div>
+		<div id="comment-display-container">{{link.nofcomments}} Comments</div>
 		<div class="info" ng-repeat="comment in link.comments">
 			<div ng-click="link.showReplyBox(comment.id)" class="reply">
 				REPLY

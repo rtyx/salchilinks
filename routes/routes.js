@@ -165,7 +165,7 @@ router.route('/comments/:user')
 router.route('/link/:id')
 .get(function(req, res) {
     var id = req.url.split('/').pop();
-    var user, title, url, date, ogtitle, ogimage, ogdescription;
+    var user, title, url, date, ogtitle, ogimage, ogdescription, nofcomments, favs;
     aux.getLink(id)
     .then(function(response) {
         user = response.rows[0].user_name;
@@ -174,6 +174,8 @@ router.route('/link/:id')
         ogtitle = response.rows[0].ogtitle;
         ogimage = response.rows[0].ogimage;
         date = response.rows[0].creation_date;
+        favs = response.rows[0].favs;
+        nofcomments = response.rows[0].comments;
         return aux.getComments(id);
     })
     .then(function(response) {
@@ -186,6 +188,8 @@ router.route('/link/:id')
             ogtitle: ogtitle,
             ogimage: ogimage,
             ogdescription: ogdescription,
+            nofcomments: nofcomments,
+            favs: favs,
             comments: response.rows
         });
     })
@@ -229,9 +233,23 @@ router.route('/reply')
 
 router.route('/fav')
 .post(function(req, res) {
-    var linkId = req.body.link;
-    var userId = req.session.user;
-})
+    var linkId = req.body.linkId;
+    var userId = req.session.user.id;
+    aux.favLink(userId, linkId)
+    .then(function() {
+        console.log("Done!");
+        res.json({
+            success: true
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
+        });
+    });
+});
 
 router.route('/logout')
 .get(function(req, res) {

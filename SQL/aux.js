@@ -12,7 +12,7 @@ module.exports = {
     },
     getLink: function (id) {
         console.log(chalk.blue("Getting link " + id + "..."));
-        return db.usedb('SELECT links.id, links.user_id, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id WHERE links.id = $1;', [id]);
+        return db.usedb('SELECT links.id, links.user_id, links.favs, links.url, links.title, links.comments, links.creation_date, links.ogimage, users.user_name FROM links LEFT JOIN users ON links.user_id = users.id WHERE links.id = $1;', [id]);
     },
     insertLink: function (user_id, url, title) {
         console.log(chalk.blue("Inserting links..."));
@@ -102,7 +102,9 @@ module.exports = {
     },
     favLink: function(userId, linkId) {
         console.log(chalk.blue("Adding link " + linkId + " in " + userId + " favourites..."));
-        db.usedb('UPDATE links SET favs = favs + 1 WHERE id = $1', [linkId]);
-        return db.usedb('INSERT INTO favs (user_id, link_id) VALUES ($1, $2) RETURNING id', [userId, linkId]);
+        return db.usedb('INSERT INTO favs (user_id, link_id) VALUES ($1, $2) RETURNING id', [userId, linkId]).
+        then(function() {
+            return db.usedb('UPDATE links SET favs = favs + 1 WHERE id = $1', [linkId]);
+        });
     }
 };

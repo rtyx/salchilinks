@@ -8,11 +8,29 @@
     function linkControl($http, $state, $stateParams) {
         var vm = this;
 
+        vm.fav = favLink;
+
+        function favLink(id) {
+            console.log("Faving link...");
+            var config = {
+                method: 'POST',
+                data: {
+                    linkId: id
+                },
+                url: '/fav'
+            };
+            $http(config);
+            console.log("Faved!");
+            $state.reload();
+        }
+
         $http.get('/link/' + $stateParams.id).then(function(resp) {
 
             if (!resp.data.session) {
                 $state.go('login');
             }
+
+            console.log(resp);
 
             vm.title = resp.data.title;
             vm.url = resp.data.url;
@@ -21,6 +39,8 @@
             vm.ogimage = resp.data.ogimage;
             vm.ogtitle = resp.data.ogtitle;
             vm.comments = resp.data.comments;
+            vm.favs = resp.data.favs;
+            vm.nofcomments = resp.data.nofcomments;
 
             vm.postComment = postComment;
 

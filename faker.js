@@ -41,7 +41,7 @@ const aux = require('./SQL/aux.js');
 setInterval(function fake() {
     var randomLink = faker.random.number(50);
     var randomUser = faker.random.number(50);
-    var randomComment = faker.lorem.sentence();
-    aux.postComment(randomLink, randomUser, randomComment);
+    // var randomComment = faker.lorem.sentence();
+    // aux.postComment(randomLink, randomUser, randomComment);
     aux.favLink(randomUser, randomLink);
-}, 60 * 1000);
+}, 1000);
