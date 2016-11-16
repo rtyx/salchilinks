@@ -20,8 +20,9 @@
                 url: '/fav'
             };
             $http(config);
-            console.log("Faved!");
-            $state.reload();
+            console.log("Faved!").then(function() {
+                $state.reload();
+            });
         }
 
         $http.get('/link/' + $stateParams.id).then(function(resp) {

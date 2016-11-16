@@ -13,7 +13,7 @@
         vm.loadHome = loadHome;
 
         function loadHome() {
-            $http.get('/home').then(function(resp) {
+            $http.get('/home?' + Date.now()).then(function(resp) {
                 console.log(resp.data);
                 if (resp.data.user) {
                     vm.activeUser = resp.data.user.name;
@@ -37,7 +37,13 @@
                 },
                 url: '/fav'
             };
-            $http(config);
+            $http(config).then(function() {
+                vm.data.find(function(item) {
+                    return item.id == id
+                });
+            }).then(function(item) {
+                // item.favs++
+            })
             console.log("Faved!");
             $state.reload();
         }

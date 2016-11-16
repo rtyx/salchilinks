@@ -31,11 +31,10 @@
                 },
                 url: '/upload'
             };
-            $http(config);
-            console.log("Uploaded!");
-            setTimeout(function () {
+            $http(config).then(function() {
+                console.log("Uploaded!");
                 $state.go('home');
-            }, 1000);
+            });
         }
     }
 })();
