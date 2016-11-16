@@ -15,14 +15,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -35,7 +35,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: links; Type: TABLE; Schema: public; Owner: rtyx
+
 --
 
 CREATE TABLE links (
@@ -51,10 +51,10 @@ CREATE TABLE links (
 );
 
 
-ALTER TABLE links OWNER TO rtyx;
+
 
 --
--- Name: links_id_seq; Type: SEQUENCE; Schema: public; Owner: rtyx
+
 --
 
 CREATE SEQUENCE links_id_seq
@@ -65,17 +65,17 @@ CREATE SEQUENCE links_id_seq
     CACHE 1;
 
 
-ALTER TABLE links_id_seq OWNER TO rtyx;
+
 
 --
--- Name: links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: rtyx
+
 --
 
 ALTER SEQUENCE links_id_seq OWNED BY links.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: rtyx
+
 --
 
 CREATE TABLE users (
@@ -86,10 +86,9 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO rtyx;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: rtyx
+
 --
 
 CREATE SEQUENCE users_id_seq
@@ -100,31 +99,30 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE users_id_seq OWNER TO rtyx;
+
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: rtyx
+
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: links id; Type: DEFAULT; Schema: public; Owner: rtyx
 --
 
 ALTER TABLE ONLY links ALTER COLUMN id SET DEFAULT nextval('links_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: rtyx
+
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: rtyx
+
 --
 
 COPY links (id, url, title, comments, creation_date, ogtitle, ogimage, ogdescription, user_id) FROM stdin;
@@ -201,15 +199,12 @@ COPY links (id, url, title, comments, creation_date, ogtitle, ogimage, ogdescrip
 
 
 --
--- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: rtyx
 --
 
 SELECT pg_catalog.setval('links_id_seq', 283, true);
 
 
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: rtyx
---
+
 
 COPY users (id, user_name, email, password) FROM stdin;
 1	Niko Marquardt DVM	Annamarie_Feil80@yahoo.com	$2a$10$hSKqT5JduC.lGgnUqIvLc.L2ntgp0n8L7WsfWcYa58In44PapHIcq
@@ -337,14 +332,14 @@ COPY users (id, user_name, email, password) FROM stdin;
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: rtyx
+
 --
 
 SELECT pg_catalog.setval('users_id_seq', 121, true);
 
 
 --
--- Name: links links_pkey; Type: CONSTRAINT; Schema: public; Owner: rtyx
+
 --
 
 ALTER TABLE ONLY links
@@ -352,7 +347,7 @@ ALTER TABLE ONLY links
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: rtyx
+
 --
 
 ALTER TABLE ONLY users
@@ -360,7 +355,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: rtyx
+
 --
 
 ALTER TABLE ONLY users
@@ -370,4 +365,3 @@ ALTER TABLE ONLY users
 --
 -- PostgreSQL database dump complete
 --
-

@@ -82,8 +82,10 @@
 
 .container-post{
 	position:relative;
+	display:flex;
+	flex-direction:colum;
 	width:400px;
-	height:auto;
+	height:500px;
 }
 
 #link-post-title{
@@ -98,11 +100,9 @@
 
 
 #link-post-profile{
-	position:absolute;
 	width:200px;
 	height:auto;
-	margin-left:40%;
-	top:5%;
+	margin-left:10%;
 }
 
 #link-post a{
@@ -112,28 +112,24 @@
 
 #link-date{
 	position:relative;
-	width:400px;
 	height:30px;
 	background-color:#F4F4F4;
-	margin-top:-1%;
-	margin-left:0%;
-	text-align: center;
+	margin-top:5%;
+	margin-left: -10%;
 }
 
 #comment-post{
 	position:relative;
-	width:320px;
-	height:120px;
+	width:300px;
+	height:100px;
 	border:1px solid black;
-	margin-left:20%;
 }
 
 #date-post{
 	position:relative;
-	width:320px;
+	width:100px;
 	height:30px;
-	margin-left:20%;
-	background-color:#F4F4F4;
+	border:1px solid black;
 }
 
 
