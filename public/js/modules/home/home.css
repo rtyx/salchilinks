@@ -1,152 +1,56 @@
-body{
-	overflow-x: hidden;
-	margin:0px;
-}
 
-.home-header{
+.linkscontainer{
 	position:relative;
-	display:flex;
-	width:auto;
-	height:100px;
-	box-shadow:2px 2px 20px 1px lightgrey;
-}
-
-.logo-display{
-	position:relative;
-	display:flex;
-	flex-direction:row;
-	top:0%;
-	left:0%;
-	width:300px;
-}
-
-#company-logo{
-	width:75px;
-	height:75px;
-	margin-left:8%;
-	margin-top:5%;
-}
-#title-display{
-	font-size:50px;
-	margin-left:10%;
-	margin-top:5%;
-	width:300px;
-	font-family:Lobster, cursive;
-}
-
-.menu-display{
-	position:relative;
-	margin-top:3%;
-	margin-left:8%;
-	display:flex;
-    flex-direction:row;
-}
-
-.home-button{
-	width:150px;
-	height:50px;
-}
-
-.button-menu{
-	position:relative;
-	color:#black;
-	font-size:18px;
-	border:none;
-	left:15%;
-
-	background-color:transparent;
-	font-family:Oswald, sans-serif;
-	outline: none;
-}
-
-.button-menu:hover,.button-menu:focus,.button-menu:active{
-	color:lightblue;
-}
-
-.logIn-button{
-	width:150px;
-	height:50px;
-}
-
-.register-button{
-	width:150px;
-	height:50px;
-}
-
-.logOut-display{
-	width:auto;
-	display:flex;
-	flex-direction:row;
-	margin-left:20%;
-}
-
-#logOut{
-	color:#black;
-	font-size:15px;
-	width:auto;
-	height:auto;
-	border:none;
-	background-color:transparent;
-	font-family:Oswald, sans-serif;
-}
-
-.upload-container{
-	position:relative;
-	left:10%;
-	margin-top:5%;
-	background-color:black;
-	width:300px;
-	height:40px;
-}
-
-#pop-upload{
-	position:relative;
-	border:none;
-	background-color: transparent;
-	color:white;
-	font-size;
-	text-align: center;
-	font-family:Oswald, sans-serif;
-	font-size:20px;
-}
-
-.links-container{
-	position:relative;
-	width:600px;
-	border:1px solid black;
-	left:10%;
+	width:550px;
+	left:25%;
 	margin-top:5%;
 }
 
-.display-links{
+.displaylinks{
 	position:relative;
-	width:600px;
-	border:1px solid black
+	width:550px;
+
 }
 
 .container-content{
 	display:flex;
 	flex-direction: row;
 	position:relative;
-	width:600px;
-	border:1px dotted black;
+	width:550px;
+	margin-top: 10%;
 }
 
 #link-counter{
 	position:relative;
 	width:50px;
+	height:75px;
+	font-family:Oswald;
+	font-size:2.5em;
+	border:none;
+	border-right: 1px solid black;
+	color:black;
+	margin-top:5%;
+	text-align:center;
 }
 
 #image-link{
 	position:relative;
-	width:100px;
-	border:2px dotted black;
+	width:125px;
+	height:125px;
+	margin-top:4%;
+	margin-left:10%;
+	box-shadow: 2px 2px 2px lightgrey;
 }
 
 #link-text{
 	position:relative;
 	width:450px;
 	overflow-wrap:break-word;
+	font-size: 1em;
+	margin-left:5%;
+	margin-top: 3%;
+	justify-content:center;
+	font-family: Cormorant Garamond, serif;
 }
 
 
@@ -156,23 +60,46 @@ body{
 	position:relative;
 	display:flex;
 	flex-direction:row;
-	background-color: skyblue;
-	width:600px;
+	width:550px;
+	margin-top: 2%;
+	margin-left:10%;
+	font-family: Cormorant Garamond, serif;
+	background-color:#F4F4F4;
+	box-shadow: 3px 3px 1px lightgrey;
 }
 
-.linkDate {
+.linkDate{
+	position:relative;
+	min-width:110px;
+	margin-left: 2%;
+}
+.linkDate a{
 	position:relative;
 	min-width: 10px;
+	font-family: Cormorant Garamond, serif;
 }
 
 .nbComments{
 	position:relative;
-	min-width: 10px;
+	width:110px;
+	margin-left:10%;
+	font-family: Cormorant Garamond, serif;
+}
+.nbComments a{
+	position:relative;
 	margin-left: 5%;
+	font-family: Cormorant Garamond, serif;
 }
 
 .userName{
 	position:relative;
 	margin-left: 5%;
 	width:150px;
+	font-family: Cormorant Garamond, serif;
+}
+.userName a{
+	position:relative;
+	margin-left: 5%;
+	width:150px;
+	font-family: Cormorant Garamond, serif;
 }

@@ -1,14 +1,19 @@
 <div class="links-container">
 	<div class="display-links">
-		<div id="link">link {{link.title}}</div>
-		<div id="image-link">
+		<div id="image-link-comment">
 			<img src="{{link.ogimage}}" alt="" />
 		</div>
+		<div id="link-comment">link {{link.title}}</div>
 	</div>
+
 	<div class="user-content">
-		<div id="username-link"><a href="#/profile?user={{link.user}}">{{link.user}}</a></div>
 		<div id="time-link">time {{link.date}}</div>
+
+		<div id="source-link">source</div>
+		<div id="username-link"><a href="#/profile?user={{link.user}}">user{{link.user}}</a></div>
+
 		<div ng-click="link.fav(link.id)" class="">{{link.favs}} FAV</div>
+
 	</div>
 </div>
 
@@ -56,7 +61,7 @@
 <div class="add-comment-container">
 	<div class="display-add-container">
 		<div id="add-comment-title">Add a comment</div>
-		<textarea ng-model="link.newComment" id="comment-add">Comment</textarea>
+		<textarea ng-model="link.newComment" id="comment-add"></textarea>
 		<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.newComment)">Submit</button>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-<div class="links-container" >
+<div class="linkscontainer" >
 
     <div class="">
         Hi <a href="#/profile?user={{home.activeUser}}">{{home.activeUser}}</a>
@@ -16,7 +16,10 @@
         </select>
     </div>
 
+
+
     <div class="display-links" ng-repeat="link in home.data | filter: searchLink | orderBy: order">
+
         <div class="container-content">
             <div id="link-counter">{{$index +1}}</div>
             <div>

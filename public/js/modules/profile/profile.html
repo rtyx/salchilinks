@@ -1,9 +1,6 @@
 	<div class="profile-display">
+		<img id="profile-logo" src="../../assets/user-logo.png" width="15%" height="70%">
 		<div class="info-profile">
-			<img id="profile-logo" src="../../assets/user-logo.png" width="20%">
-			<div id="username-profile"></div>
-			<div id="email-profile"></div>
-			<!-- <img id="profile-logo" src="../../assets/user-logo.png"> -->
 			<div id="username-profile">{{user.name}}</div>
 			<div id="email-profile">{{user.email}}</div>
 		</div>
@@ -14,6 +11,7 @@
 				<div id="link-post-title">Links you post </div>
 			</div>
 			<div class="container-post" ng-repeat="link in user.links">
+
 				<div id="image-link-post"><img src="{{link.ogimage}}" alt=""/></div>
 				<div id="link-post"><a href="#/link?id={{link.id}}">{{link.title}}</a></div>
 				<div id="link-date">{{link.creation_date | timeago}}</div>
@@ -25,10 +23,12 @@
 			<div class="display-comments-post">
 				<div id="comments-post-title">Comments you post</div>
 			</div>
+
 			<div class="" ng-repeat="comment in user.comments">
 				<div id="comment-post"><a href="#/link?id={{comment.link_id}}">{{comment.comment}}</a></div>
 				<div id="date-post">{{comment.creation_date | timeago}}</div>
 			</div>
+
 		</div>
 	</div>
 </div>
