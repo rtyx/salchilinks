@@ -16,7 +16,7 @@
 			<div class="container-post" ng-repeat="link in user.links">
 				<div id="image-link-post"><img src="{{link.ogimage}}" alt=""/></div>
 				<div id="link-post"><a href="#/link?id={{link.id}}">{{link.title}}</a></div>
-				<div id="link-date">{{link.creation_date}}</div>
+				<div id="link-date">{{link.creation_date | timeago}}</div>
 
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="" ng-repeat="comment in user.comments">
 				<div id="comment-post"><a href="#/link?id={{comment.link_id}}">{{comment.comment}}</a></div>
-				<div id="date-post">{{comment.creation_date}}</div>
+				<div id="date-post">{{comment.creation_date | timeago}}</div>
 			</div>
 		</div>
 	</div>

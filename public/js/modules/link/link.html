@@ -42,12 +42,12 @@
 						<div id="comment">{{reply.comment}}</div>
 					</div>
 					<div id="user-name"><a href="#/profile?user={{reply.user_name}}">{{reply.user_name}}</a></div>
-					<div id="time-comment">{{reply.creation_date}}</div>
+					<div id="time-comment">{{reply.creation_date | timeago}}</div>
 				</div>
 			</div>
 			<div class="info-content-comment">
 				<div id="user-name"><a href="#/profile?user={{comment.user_name}}">{{comment.user_name}}</a></div>
-				<div id="time-comment">{{comment.creation_date}}</div>
+				<div id="time-comment">{{comment.creation_date | timeago}}</div>
 			</div>
 		</div>
 	</div>

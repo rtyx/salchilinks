@@ -6,6 +6,7 @@
         .module('app', [
             // Angular modules.
             'ui.router',
+            'ngtimeago',
 
             // Custom modules.
             'app.link',

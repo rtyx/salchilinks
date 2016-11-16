@@ -5,16 +5,18 @@
     </div>
 
     <!-- <div class="">
-        order by
-        <div class="">
-            most recent
-        </div>
-        <div class="">
-            most comments
-        </div>
+        <input type="text" data-ng-model="searchLink.title" value="" placeholder="Search a link">
     </div> -->
 
-    <div class="display-links" ng-repeat="link in home.data">
+    <div ngclass="">
+        Order by
+        <select ng-model="order" class="" name="">
+            <option value="-creation_date">most recent</option>
+            <option value="-favs">most popular</option>
+        </select>
+    </div>
+
+    <div class="display-links" ng-repeat="link in home.data | filter: searchLink | orderBy: order">
         <div class="container-content">
             <div id="link-counter">{{$index +1}}</div>
             <div>
@@ -23,7 +25,7 @@
             <div id="link-text"><a href="{{link.url}}">{{link.title}}</a></div>
         </div>
         <div class="comment-user-content">
-            <div class="linkDate"><a href="#/link?id={{link.id}}">{{link.creation_date}}</a></div>
+            <div class="linkDate"><a href="#/link?id={{link.id}}">{{link.creation_date | timeago}}</a></div>
             <div class="nbComments">{{link.comments}} <a href="#/link?id={{link.id}}">comments</a></div>
             <div class="userName">Posted by <a href="#/profile?user={{link.user_name}}">{{link.user_name}}</a></div>
             <div class="">{{link.favs}} FAV</div>

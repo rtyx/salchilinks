@@ -8,6 +8,8 @@
     function homeControl($http) {
         var vm = this;
 
+        vm.order = "creation_date";
+
         $http.get('/home').then(function(resp) {
             console.log(resp.data);
             if (resp.data.user) {
