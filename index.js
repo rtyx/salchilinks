@@ -14,6 +14,6 @@ app.use('/', routes);
 
 app.use(express.static('public'));
 
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
     console.log(chalk.underline.green.bold('Listening on port 8080!'));
 });

@@ -9,7 +9,6 @@
             var vm = this;
             $http.get('/login').then(function(resp) {
                 if (resp.data.logstatus) {
-                    console.log("User " + resp.data.id + " is logged in!");
                     $state.go('home');
                 }
             });

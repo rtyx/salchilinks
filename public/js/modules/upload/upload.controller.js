@@ -10,9 +10,12 @@
         var vm = this;
 
         $http.get('/upload').then(function(resp) {
+            console.log(resp);
             if (!resp.data.logstatus) {
                 console.log("No user is logged in!");
-                $state.go('upload');
+                $state.go('login');
+            } else {
+                console.log(resp.data.name + " is logged in");
             }
         });
 

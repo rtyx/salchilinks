@@ -10,19 +10,20 @@
         var vm = this;
 
         $http.get('/profile/' + $stateParams.user).then(function(resp) {
+            if (!resp.data.session) {
+                console.log("user not logged in");
+                // $state.go('login');
+            }
             vm.id = resp.data.id;
             vm.name = resp.data.name;
             vm.email = resp.data.email;
             vm.links = resp.data.links;
-
-            console.log(vm);
-
-            if (resp.data.logstatus) {
-                console.log(this);
-                // console.log("User " + resp.data.id + " is logged in!");
-                // $state.go('home');
-            }
+            $http.get('/comments/' + vm.id).then(function(resp) {
+                vm.comments = resp.data;
+            });
         });
+
+
 
         // vm.register = function(user_name, email, password) {
         //   var config = {

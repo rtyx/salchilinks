@@ -28,20 +28,8 @@ router.use(function(req, res, next) {
 
 router.route('/home')
 .get(function(req, res) {
-    aux.getLinks(100)
+    aux.getLinks(30)
     .then(function(response) {
-        // var idArray = [];
-        // for (var i = 0; i < response.rows.length; i++) {
-        //     if (idArray.indexOf(response.rows[i].id) == -1) {
-        //         console.log("NOT THERE");
-        //         idArray.push(response.rows[i].id);
-        //         response.rows[i].comments =+ 1;
-        //     } else {
-        //         response.rows[i].comments =+ 1;
-        //         console.log("ALREADY THERE THERE");
-        //     }
-        // }
-        // console.log(idArray);
         res.json({
             user: req.session.user,
             links: response.rows});
@@ -165,10 +153,19 @@ router.route('/profile/:user')
     });
 });
 
+router.route('/comments/:user')
+.get(function(req, res) {
+    var user = req.url.split('/').pop();
+    aux.getUserComments(user)
+    .then(function(response) {
+        res.json(response.rows);
+    });
+});
+
 router.route('/link/:id')
 .get(function(req, res) {
     var id = req.url.split('/').pop();
-    var user, title, url, date, ogtitle, ogimage, ogdescription;
+    var user, title, url, date, ogtitle, ogimage, ogdescription, nofcomments, favs;
     aux.getLink(id)
     .then(function(response) {
         user = response.rows[0].user_name;
@@ -177,10 +174,13 @@ router.route('/link/:id')
         ogtitle = response.rows[0].ogtitle;
         ogimage = response.rows[0].ogimage;
         date = response.rows[0].creation_date;
+        favs = response.rows[0].favs;
+        nofcomments = response.rows[0].comments;
         return aux.getComments(id);
     })
     .then(function(response) {
         res.json({
+            session: req.session.user,
             user: user,
             title: title,
             url: url,
@@ -188,6 +188,8 @@ router.route('/link/:id')
             ogtitle: ogtitle,
             ogimage: ogimage,
             ogdescription: ogdescription,
+            nofcomments: nofcomments,
+            favs: favs,
             comments: response.rows
         });
     })
@@ -196,6 +198,55 @@ router.route('/link/:id')
         res.json({
             success: false,
             reason: error
+        });
+    });
+});
+
+router.route('/comment')
+.post(function(req, res) {
+    aux.postComment(req.body.linkId, req.body.author, req.body.comment, req.body.parent)
+    .then(function() {
+        console.log("Done!");
+        res.json({
+            success: true
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
+        });
+    });
+});
+
+router.route('/reply')
+.get(function(req, res) {
+    var parent = req.query.parent;
+    aux.getReplies(parent)
+    .then(function(response) {
+        res.json({
+            replies: response.rows
+        });
+    });
+});
+
+router.route('/fav')
+.post(function(req, res) {
+    var linkId = req.body.linkId;
+    var userId = req.session.user.id;
+    aux.favLink(userId, linkId)
+    .then(function() {
+        console.log("Done!");
+        res.json({
+            success: true
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
         });
     });
 });
