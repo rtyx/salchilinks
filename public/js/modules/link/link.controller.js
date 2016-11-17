@@ -27,12 +27,6 @@
 
         $http.get('/link/' + $stateParams.id).then(function(resp) {
 
-            if (!resp.data.session) {
-                $state.go('login');
-            }
-
-            console.log(resp);
-
             vm.title = resp.data.title;
             vm.url = resp.data.url;
             vm.date = resp.data.date;
@@ -57,11 +51,10 @@
                     },
                     url: '/comment'
                 };
-                $http(config);
-                console.log("Posted!");
-                setTimeout(function () {
+                $http(config).then(function() {
+                    console.log("Posted!");
                     $state.reload();
-                }, 1000);
+                });
             }
 
             vm.showReplyBox = showReplyBox;

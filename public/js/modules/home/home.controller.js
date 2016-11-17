@@ -8,7 +8,21 @@
     function homeControl($http, $state) {
         var vm = this;
 
-        vm.order = "creation_date";
+        vm.order = "patata";
+
+        vm.options = [{
+            id: "1",
+            name: 'most recent',
+            value: '-creation_date'
+        }, {
+            id: "2",
+            name: 'most popular',
+            value: '-favs'
+        }];
+
+        vm.showOrder = function() {
+            console.log(vm.order);
+        };
 
         vm.loadHome = loadHome;
 
@@ -28,7 +42,7 @@
 
         vm.fav = favLink;
 
-        function favLink(id) {
+        function favLink(id, index) {
             console.log("Faving link...");
             var config = {
                 method: 'POST',
@@ -38,15 +52,15 @@
                 url: '/fav'
             };
             $http(config).then(function() {
-                vm.data.find(function(item) {
-                    return item.id == id
-                });
-            }).then(function(item) {
-                // item.favs++
-            })
-            console.log("Faved!");
-            $state.reload();
+                vm.data[index].favs += 1;
+            });
+
         }
+
+        // $http(config).then(function() {
+        //     vm.data.find(function(item) {
+        //         return item.id == id;
+        //     });
 
         // vm.favLink = favLink;
 

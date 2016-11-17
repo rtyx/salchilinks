@@ -225,6 +225,23 @@ router.route('/reply')
 });
 
 router.route('/fav')
+.get(function(req, res) {
+    var userId = req.session.user.id;
+    aux.getUserFavs(userId)
+    .then(function(response) {
+        console.log("Done!");
+        res.json({
+            favs: response
+        });
+    })
+    .catch(function(error) {
+        console.log(error(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
+        });
+    });
+})
 .post(function(req, res) {
     var linkId = req.body.linkId;
     var userId = req.session.user.id;
