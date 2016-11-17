@@ -1,30 +1,26 @@
 
 <!-- <input ng-model="upload.csrfToken" type="hidden" name="_csrf" value="{{upload.csrfToken}}"> -->
-<input ng-model="upload.url" type="text" class="url" placeholder="url">
-<input ng-model="upload.title" type="text" class="title" placeholder="title">
-<button ng-click="upload.uploadLink(upload.url, upload.title)" class="submit">Submit</button>
 
-<!--
 <div class="form-upload">
-<img id="upload-background" src="../assets/upload-background.png">
-<div id="form-background">
-<div id="upload-title">Upload your link <br>over here</br></div>
-<form class="upload">
-<div id="link">
-<label>Link</label>
-<br>
-<input id="name-url" class="input-upload" type="url">
-</br>
-</div>
-<div id="description">
-<label>Description</label>
-<br>
-<textarea id="description-url" maxlength="100" class="input-upload" type="text"></textarea>
-</br>
-</div>
-<button id="submit-url" type="submit" form="logIn" value="submit">Upload</button>
+    <img id="upload-background" src="../assets/upload-background.png">
+    <div id="form-background">
+        <div id="upload-title">Submit your link <br>over here</br></div>
+        <form class="upload">
+            <div id="link">
+                <label>Link</label>
+                <br>
+                <input ng-model="upload.url" type="text" class="url" placeholder="url">
+            </br>
+        </div>
+        <div id="description">
+            <label>Title</label>
+            <br>
+            <input ng-model="upload.title" type="text" class="title" placeholder="title">
+        </br>
+    </div>
+    <button ng-click="upload.uploadLink(upload.url, upload.title)" class="submit">Submit</button>
 </form>
 <div id="close-form-upload">X</div>
 </div>
 </div>
-</div> -->
+</div>

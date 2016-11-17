@@ -17,13 +17,6 @@ router.use(function(req, res, next) {
     next();
 });
 
-// INDEX
-
-// router.route('/')
-//     .get(function(req, res) {
-//         res.redirect('/#/home');
-//     });
-
 // HOME
 
 router.route('/home')
