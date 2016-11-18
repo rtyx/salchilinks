@@ -4,6 +4,8 @@ const csurf = require('csurf');
 const aux = require('../SQL/aux.js');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
+const chalk = require('chalk');
+const errstyle = chalk.bold.red;
 
 router.use(cookieSession({
     secret: 'helloworld',
@@ -28,10 +30,10 @@ router.route('/home')
             links: response.rows});
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: error
+            reason: "Something went wrong!"
         });
     });
 });
@@ -52,10 +54,10 @@ router.route('/register')
         res.json(response.rows);
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: error
+            reason: "Something went wrong!"
         });
     });
 });
@@ -75,10 +77,10 @@ router.route('/login')
         res.json(response.rows);
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: error
+            reason: "Incorrect password or email! Check and try again"
         });
     });
 });
@@ -108,10 +110,10 @@ router.route('/upload')
         res.redirect('/');
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: "Something went wrong!"
+            reason: "That link already exists in our database!"
         });
     });
 });
@@ -138,10 +140,10 @@ router.route('/profile/:user')
         });
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: error
+            reason: "Something went wrong!"
         });
     });
 });
@@ -187,10 +189,10 @@ router.route('/link/:id')
         });
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: error
+            reason: "Something went wrong!"
         });
     });
 });
@@ -205,7 +207,7 @@ router.route('/comment')
         });
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
             reason: "Something went wrong!"
@@ -231,14 +233,15 @@ router.route('/fav')
     .then(function(response) {
         console.log("Done!");
         res.json({
+            success: true,
             favs: response
         });
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
-            reason: "Something went wrong!"
+            reason: "It's already in your favourites!"
         });
     });
 })
@@ -253,7 +256,7 @@ router.route('/fav')
         });
     })
     .catch(function(error) {
-        console.log(error(error));
+        console.log(errstyle(error));
         res.json({
             success: false,
             reason: "Something went wrong!"

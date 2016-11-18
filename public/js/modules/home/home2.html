@@ -32,6 +32,9 @@
         <div class="nbComments">{{link.comments}} <a href="#/link?id={{link.id}}">comments</a></div>
         <div class="userName">Posted by <a href="#/profile?user={{link.user_name}}">{{link.user_name}}</a></div>
         <div ng-click="home.fav(link.id, $index)" class="">{{link.favs}} FAV</div>
+        <div class="errorMessage">
+            {{link.errmessage}}
+        </div>
     </div>
 </div>
 </div>

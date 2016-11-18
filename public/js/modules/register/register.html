@@ -25,6 +25,9 @@
   </br>
 </div>
 <button ng-click="register.register(register.user.name, register.user.email, register.user.password)" id="submit-register"><span>Register</span></button>
+<div class="errorMessage">
+    {{register.errmessage}}
+</div>
 </form>
 <div id="register-click">If you are already register<a ui-sref="login"> Log In here</a></div>
 <div id="close-register">X</div>

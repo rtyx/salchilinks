@@ -51,8 +51,12 @@
                 },
                 url: '/fav'
             };
-            $http(config).then(function() {
-                vm.data[index].favs += 1;
+            $http(config).then(function(res) {
+                if (res.data.success) {
+                    vm.data[index].favs += 1;
+                } else {
+                    console.log(res.data.reason);
+                }
             });
 
         }

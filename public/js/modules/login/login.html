@@ -19,6 +19,9 @@
 		</br>
 	</div>
 	<button ng-click="login.login(login.user.email, login.user.password)" id="submit-login" type="submit" form="logIn" value="submit">Log in</button>
+	<div class="errorMessage">
+		{{login.errmessage}}
+	</div>
 	</form>
 <div id="login-click">Register<a ui-sref="register"> Clicking here</a></div>
 <div id="close-form">X</div>

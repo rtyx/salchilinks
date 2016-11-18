@@ -31,9 +31,12 @@
                 },
                 url: '/upload'
             };
-            $http(config).then(function() {
-                console.log("Uploaded!");
-                $state.go('home');
+            $http(config).then(function(res) {
+                if (res.data.success) {
+                    $state.go('home');
+                } else {
+                    vm.errmessage = res.data.reason;
+                }
             });
         }
     }

@@ -21,8 +21,12 @@
                 },
                 url: '/login'
             };
-            $http(config).then(function() {
-                $state.go('home');
+            $http(config).then(function(res) {
+                if (res.data.success) {
+                    $state.go('home');
+                } else {
+                    vm.errmessage = res.data.reason;
+                }
             });
         };
     }

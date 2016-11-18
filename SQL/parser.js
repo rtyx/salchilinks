@@ -2,7 +2,6 @@ var request = require('request');
 const cheerio = require('cheerio');
 
 function parseUrl(url){
-    console.log("haaaay");
     return new Promise(function (resolve, reject){
         request = request.defaults({jar: true});
         request(url, function (error, response, html) {

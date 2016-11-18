@@ -21,13 +21,11 @@ module.exports = {
             return db.usedb('SELECT * FROM links WHERE url = $1;', [url]).then(function(data) {
                 console.log("Checking if URL already exists...");
                 if (data.rows[0]) {
-                    console.log(error("It already exists!"));
                     throw new Error("Duplicated URL");
                 } else {
                     console.log("Checking if title already exists...");
                     return db.usedb('SELECT * FROM links WHERE title = $1;', [og.title]).then(function(data) {
                         if (data.rows[0]) {
-                            console.log(error("It already exists!"));
                             throw new Error("Duplicated title");
                         } else {
                             console.log("Looks new!");
@@ -53,10 +51,9 @@ module.exports = {
         return db.usedb('SELECT * FROM users WHERE email = $1;', [email]).then(function(userInfo){
             return hash.checkPassword(password, userInfo.rows[0].password).then(function(passMatch){
                 if(passMatch){
-                    console.log('matched');
                     return db.usedb('SELECT * FROM users WHERE email = $1;', [email]);
                 } else {
-                    console.log('did not match');
+                    throw new Error('Incorrect email or password!');
                 }
             });
         });
