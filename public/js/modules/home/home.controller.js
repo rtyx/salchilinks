@@ -5,10 +5,8 @@
 
     homeControl.$inject = ['$http', '$state'];
 
-    function homeControl($http, $state) {
+    function homeControl($http) {
         var vm = this;
-
-        vm.order = "patata";
 
         vm.options = [{
             id: "1",
@@ -20,8 +18,9 @@
             value: '-favs'
         }];
 
-        vm.showOrder = function() {
-            console.log(vm.order);
+        vm.changeOrder = function(val) {
+            console.log(val);
+            vm.order = val;
         };
 
         vm.loadHome = loadHome;

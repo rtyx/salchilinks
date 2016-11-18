@@ -8,17 +8,20 @@
     <input type="text" data-ng-model="searchLink.title" value="" placeholder="Search a link">
 </div> -->
 
-<div ng-click="home.showOrder()" ngclass="">
+<div>
     Order by
-    <select
+    <button ng-click="home.changeOrder('-creation_date')" type="button" name="button">Most recent</button>
+    <button ng-click="home.changeOrder('-favs')" type="button" name="button">Most popular</button>
+    <!-- <select
         ng-model="order"
         ng-init="order = home.options[0]"
-        ng-options="option.name for option in home.options track by option.value">
-    </select>
+        ng-options="option.name for option in home.options track by option.value"
+    >
+    </select> -->
 </div>
 
 
-<div class="display-links" ng-repeat="link in home.data | filter: searchLink | orderBy: order">
+<div class="display-links" ng-repeat="link in home.data | filter: searchLink | orderBy: home.order">
 
     <div class="container-content">
         <div id="link-counter">{{$index +1}}</div>
