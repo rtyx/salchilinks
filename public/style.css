@@ -1,0 +1,117 @@
+body {
+    overflow-x: hidden;
+    margin:0px;
+    background-color: #efefef !important;
+}
+
+@font-face {
+    font-family:"sausagefont";
+    src: url("sausagefont.ttf") /* TTF file for CSS3 browsers */
+}
+
+#title-display{
+    font-size:3em;
+    width:150px;
+    font-family: sausagefont;
+    padding-top: 20px;
+    color: black !important;
+    text-align: center !important;
+}
+
+.navbar {
+    background-color: #DC6F2A !important;
+}
+
+a {
+    color: #DC6F2A !important;
+}
+
+.ghost-row {
+    height: 75px;
+}
+
+.upload-button{
+    width:200px;
+    height:50px;
+}
+
+.glyphicon-star {
+    color: #DC6F2A !important;
+}
+
+.ogimage {
+    object-fit: cover !important;
+    height: 120px !important;
+    width: 120px !important;
+}
+
+.ogimage-container {
+    height: 120px !important;
+    width: 120px !important;
+}
+
+.link-counter-box, .fav-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-counter {
+    margin: 10px;
+    font-size:3em !important;
+    font-family: 'Codystar', cursive;
+    transform: translateY(100);
+    border: 1px solid rgb(221, 221, 221);
+    background-color: white;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fav-counter {
+    margin: 10px;
+    font-size:2em !important;
+    font-family: 'Codystar', cursive;
+    transform: translateY(100);
+    border: 1px solid rgb(221, 221, 221);
+    background-color: white;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-icon {
+    color: black !important;
+}
+
+.link-info {
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.order-by {
+    margin: 10px;
+}
+
+.list-group {
+    box-shadow: none !important;
+}
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}

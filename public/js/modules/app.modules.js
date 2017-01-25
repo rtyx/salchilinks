@@ -11,11 +11,10 @@
             // Custom modules.
             'app.link',
             'app.router',
-            'app.upload',
+            'app.post',
             'app.home',
             'app.register',
             'app.login',
-            'app.header',
             'app.profile',
         ]);
 })();

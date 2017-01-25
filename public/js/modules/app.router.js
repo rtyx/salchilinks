@@ -12,7 +12,7 @@
 
             .state('home', {
                 url: '/home',
-                templateUrl: 'js/modules/home/home2.html',
+                templateUrl: 'js/modules/home/home.html',
                 controller: 'homeCtrl',
                 controllerAs: 'home'
             })
@@ -31,11 +31,11 @@
                 controllerAs: 'login'
             })
 
-            .state('upload', {
-                url: '/upload',
-                templateUrl: 'js/modules/upload/upload.html',
-                controller: 'uploadCtrl',
-                controllerAs: 'upload'
+            .state('post', {
+                url: '/post',
+                templateUrl: 'js/modules/post/post.html',
+                controller: 'postCtrl',
+                controllerAs: 'post'
             })
 
             .state('header', {
@@ -57,7 +57,7 @@
                 templateUrl: 'js/modules/profile/profile.html',
                 controller: 'profileCtrl',
                 controllerAs: 'user'
-            })
+            });
 
             // .state('profile.user', {
             //     url: '/:user',

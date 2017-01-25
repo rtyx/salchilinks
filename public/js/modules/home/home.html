@@ -1,46 +1,63 @@
-<div class="linksIndex">
-    <div class="card uploadButton">
-        <div class="cardPosition uploadText">0</div>
-        <div class="cardLink uploadText">your link</div>
-       <div class="cardUser uploadText">
-            your username
-        </div>
-        <div class="cardTags uploadText">
-            #tags
-        </div>
+<div class="ghost-row row">
+
+</div>
+
+
+<div class="row">
+    <div class="col-sm-2">
     </div>
-    <div ng-repeat="link in home.data">
-        <div class="card" ng-click="changeActiveLink(link)">
-            <div class="cardPosition">{{$index +1}}</div>
-            <a class="cardLink" href="{{link.url}}">{{link.title}}</a>
-            <div class="cardUser">
-                {{link.author}}
-            </div>
-            <div class="cardTags">
-                #{{link.tags}} -
-            </div>
-            <div class="cardComments">
-                420 comments -
-            </div>
-            <div class="cardTime">
-                23h ago
-            </div>
+    <div class="panel panel-default col-sm-8">
+        <div class="panel-body">
+            Hi <a href="#/profile?user={{home.activeUser}}">{{home.activeUser}}</a>
         </div>
+        <!-- <div class="panel-footer">
+            Order by
+            <button ng-click="home.changeOrder('-creation_date')" type="button" name="button" class="btn">Most recent</button>
+            <button ng-click="home.changeOrder('-favs')" type="button" name="button" class="btn">Most popular</button>
+        </div> -->
+    </div>
+    <div class="col-sm-2">
     </div>
 </div>
-<div class="activeLink">
-    <div class="activeTitle">
-        {{home.activeLink.title}}
+
+<ul class="list-group" ng-repeat="link in home.data | filter: searchLink | orderBy: home.order">
+    <div class="row is-flex">
+        <div class="col-sm-2 vcenter link-counter-box">
+            <p class="link-counter">
+                {{$index +1}}
+            </p>
+        </div>
+        <li href="{{link.url}}" class="list-group-item col-sm-8">
+            <div class="link-info">
+                <div class="media">
+                    <div class="media-left ogimage-container">
+                        <img class="media-object ogimage" src="{{link.ogimage}}" alt="">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="{{link.url}}">{{link.title}}</a>
+                        </h4>
+                        Posted by <a href="#/profile?user={{link.user_name}}">{{link.user_name}}</a>
+                        <br>
+                        {{link.creation_date | timeago}}
+                        <br>
+                        {{link.comments}} <a href="#/link?id={{link.id}}">comments</a>
+                        <br>
+                        {{link.favs}} <a href="#/link?id={{link.id}}">stars</a>.
+                        <br>
+                        <h6 class="errorMessage">
+                            {{link.errmessage}}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <div class="col-sm-2 vcenter link-counter-box">
+            <div ng-click="home.fav(link.id, $index)" class="fav-box">
+                <p class="fav-counter">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="activeUser">
-        {{home.activeLink.author}}
-    </div>
-    <div class="activeTags">
-        #{{home.activeLink.tags}}
-    </div>
-    <div class="activeTime">
-        {{home.activeLink.timestamp}}
-    </div>
-    <div class="activeCommentsBox">
-    </div>
-</div>
+</ul>

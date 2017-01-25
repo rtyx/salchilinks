@@ -3,60 +3,51 @@
 <html ng-app="app">
 <head>
     <title>Links Archive</title>
-    <link rel="stylesheet" type="text/css" href="./js/modules/link/link.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/profile/profile.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/upload/upload.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/login/login.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/register/register.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/home/home.css">
-    <link rel="stylesheet" type="text/css" href="./js/modules/header/header.css">
-    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Coiny|Lobster" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Oswald" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="./sausagefont.ttf" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Codystar" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
     <script src="https://unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js"></script>
     <!-- <script src="http://momentjs.com/downloads/moment.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./js/ngtimeago-master/ngtimeago.js"></script>
 </head>
 
 <body>
-    <div class="header-header">
-        <div ui-sref="home" class="header-display">
-            <img id="company-logo" src="../../assets/linkit-logo.png" width="10%">
-            <div id="title-display">Link It</div>
-        </div>
-        <div class="menu-display">
-            <div ui-sref="login" class ="logIn-button">
-                <img class="logo" src="../../assets/logIn-logo.png" width="5%">
-                <button id="signIn" class="button-menu">Log In</button>
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid is-flex">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="nav navbar-nav navbar-left">
+                <a id="title-display" class="navbar-brand" href="#">SALCHILINKS</a>
             </div>
-            <div ui-sref="register" class ="register-button">
-                <img class="logo" src="../../assets/register-logo.png" width="5%">
-                <button id="register-button-logo" class="button-menu">Register</button>
-            </div>
-            <div ui-sref="upload" class="upload-button">
-                <img class="logo" src="../../assets/upload-logo.png" width="5%">
-                <button id="upload-content" class="button-menu">Upload</button>
-            </div>
-            <div class="log-out-display">
-            <button id="myprofile" class="button-menu">
-                    <a href="#/profile/">My profile</a>
-                </button>
-                <p>|</p>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#/post"><span class="glyphicon glyphicon-plus navbar-icon" aria-hidden="true"></span></a>
+                    </li>
 
-                <!-- <button id="log-out" class="button-menu">Log Out</button> -->
-
-                <button id="log-out">
-                    <a href="/logout">Log out</a>
-                </button>
-            </div>
-        </div>
-    </div>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-menu-hamburger navbar-icon" aria-hidden="true"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/login">Login</a></li>
+                            <li><a href="#/register">Register</a></li>
+                            <li><a href="#/profile">Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
     <div class="content">
         <div ui-view>
@@ -70,18 +61,15 @@
     <script src="./js/modules/app.modules.js"></script>
     <!-- ROUTER -->
     <script src="./js/modules/app.router.js"></script>
-    <!-- HEADER -->
-    <script src="./js/modules/header/header.module.js"></script>
-    <script src="./js/modules/header/header.controller.js"></script>
     <!-- HOME -->
     <script src="./js/modules/home/home.module.js"></script>
     <script src="./js/modules/home/home.controller.js"></script>
     <!-- REGISTER -->
     <script src="./js/modules/register/register.module.js"></script>
     <script src="./js/modules/register/register.controller.js"></script>
-    <!-- UPLOAD -->
-    <script src="./js/modules/upload/upload.module.js"></script>
-    <script src="./js/modules/upload/upload.controller.js"></script>
+    <!-- POST -->
+    <script src="./js/modules/post/post.module.js"></script>
+    <script src="./js/modules/post/post.controller.js"></script>
     <!-- COMMENTS -->
     <!-- <script src="./js/modules/comments/comments.module.js"></script>
     <script src="./js/modules/comments/comments.controller.js"></script> -->

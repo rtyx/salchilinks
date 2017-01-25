@@ -1,15 +1,15 @@
 (function() {
 
     angular
-    .module("app.upload")
-    .controller("uploadCtrl", uploadControl);
+    .module("app.post")
+    .controller("postCtrl", postControl);
 
-    uploadControl.$inject = ['$http', '$state'];
+    postControl.$inject = ['$http', '$state'];
 
-    function uploadControl($http, $state) {
+    function postControl($http, $state) {
         var vm = this;
 
-        $http.get('/upload').then(function(resp) {
+        $http.get('/post').then(function(resp) {
             console.log(resp);
             if (!resp.data.logstatus) {
                 console.log("No user is logged in!");
@@ -19,9 +19,9 @@
             }
         });
 
-        vm.uploadLink = uploadLink;
+        vm.postLink = postLink;
 
-        function uploadLink(url, title) {
+        function postLink(url, title) {
             console.log("Uploading...");
             var config = {
                 method: 'POST',
@@ -29,7 +29,7 @@
                     url: url,
                     title: title,
                 },
-                url: '/upload'
+                url: '/post'
             };
             $http(config).then(function(res) {
                 if (res.data.success) {

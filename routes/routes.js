@@ -99,7 +99,7 @@ router.route('/login')
 // })
 // });
 
-router.route('/upload')
+router.route('/post')
 .get(function(req, res) {
     res.json(req.session.user);
 })
