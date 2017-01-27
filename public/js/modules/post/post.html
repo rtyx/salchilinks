@@ -1,29 +1,29 @@
 
-<!-- <input ng-model="upload.csrfToken" type="hidden" name="_csrf" value="{{upload.csrfToken}}"> -->
+<!-- <input ng-model="post.csrfToken" type="hidden" name="_csrf" value="{{post.csrfToken}}"> -->
 
-<div class="form-upload">
-    <img id="upload-background" src="../assets/upload-background.png">
-    <div id="form-background">
-        <div id="upload-title">Submit your link <br>over here</br></div>
-        <form class="upload">
-            <div id="link">
-                <label>Link</label>
-                <br>
-                <input ng-model="upload.url" type="text" class="url" placeholder="url">
-            </br>
+<div class="form-post-container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input ng-model="post.url" type="text" class="form-control" placeholder="URL" aria-describedby="sizing-addon2">
+            </div>
         </div>
-        <div id="description">
-            <label>Title</label>
-            <br>
-            <input ng-model="upload.title" type="text" class="title" placeholder="title">
-        </br>
-    </div>
-    <button ng-click="upload.uploadLink(upload.url, upload.title)" class="submit">Submit</button>
-    <div class="errorMessage">
-        {{upload.errmessage}}
-    </div>
-</form>
-<div id="close-form-upload">X</div>
-</div>
-</div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input ng-model="post.title" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" ng-click="post.postLink(post.url, post.title)" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="errorMessage">
+                    {{post.errmessage}}
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

@@ -1,35 +1,33 @@
-<div class="form-register">
-  <img id="register-background" src="../../assets/register-background.png">
-  <div id="form-background">
-    <div id="register">Register</div>
-    <form class="register-in">
-      <div id="register-name">
-        <label>User Name</label>
-        <br>
-        <input ng-model="register.user.name" id="name-register" maxlength="15"  class="input-register" type="text">
-        <input type="hidden" name="_csrf" value="{{csrfToken}}">
-      </br>
-    </div>
-    <div id="register-email">
-      <label>Email</label>
-      <br>
-      <input ng-model="register.user.email" id="email-register" maxlength="20" class="input-register" type="email">
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
-    </br>
-  </div>
-  <div id="register-password">
-    <label>Password</label>
-    <br>
-    <input ng-model="register.user.password" id="password-register"  maxlength="10" class="input-register" type="password">
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-  </br>
-</div>
-<button ng-click="register.register(register.user.name, register.user.email, register.user.password)" id="submit-register"><span>Register</span></button>
-<div class="errorMessage">
-    {{register.errmessage}}
-</div>
-</form>
-<div id="register-click">If you are already register<a ui-sref="login"> Log In here</a></div>
-<div id="close-register">X</div>
-</div>
+<div class="form-post-container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input ng-model="register.user.name" type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon2">
+				<input type="hidden" name="_csrf" value="{{csrfToken}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input ng-model="register.user.email" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon2">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input ng-model="register.user.password" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+				<button ng-click="register.register(register.user.name, register.user.email, register.user.password)" class="btn btn-default" type="submit" form="register" value="submit">Register</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div id="register-click">Already registered?<a ui-sref="login">Log in</a></div>
+                <div class="errorMessage">
+                    {{post.errmessage}}
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

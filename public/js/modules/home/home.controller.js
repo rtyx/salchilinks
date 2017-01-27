@@ -29,9 +29,10 @@
             $http.get('/home?' + Date.now()).then(function(resp) {
                 console.log(resp.data);
                 if (resp.data.user) {
+                    $('#greeting').css('display', 'block');
                     vm.activeUser = resp.data.user.name;
                 } else {
-                    vm.activeUser = "there!";
+                    vm.activeUser = " ";
                 }
                 vm.data = resp.data.links;
             });

@@ -22,7 +22,7 @@
         vm.postLink = postLink;
 
         function postLink(url, title) {
-            console.log("Uploading...");
+            console.log("Posting...");
             var config = {
                 method: 'POST',
                 data: {

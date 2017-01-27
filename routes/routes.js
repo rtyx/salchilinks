@@ -51,7 +51,9 @@ router.route('/register')
             id: response.rows[0].id,
             name: response.rows[0].user_name
         };
-        res.json(response.rows);
+        res.json({
+            success: true
+        });
     })
     .catch(function(error) {
         console.log(errstyle(error));
@@ -106,8 +108,9 @@ router.route('/post')
 .post(function(req, res) {
     aux.insertLink(req.session.user.id, req.body.url, req.body.title)
     .then(function() {
-        console.log("Done!");
-        res.redirect('/');
+        res.json({
+            success: true
+        });
     })
     .catch(function(error) {
         console.log(errstyle(error));

@@ -9,6 +9,6 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ```
 	> git clone git@github.com:rtyx/salchilinks.git
 	> cd salchilinks
-	> npm install
-	> npm start
+	> node .
+	> open browser and go to your localhost/8080
 ```

@@ -56,10 +56,13 @@ a {
     align-items: center;
 }
 
+#greeting {
+    display: none;
+}
+
 .link-counter {
     margin: 10px;
     font-size:3em !important;
-    font-family: 'Codystar', cursive;
     transform: translateY(100);
     border: 1px solid rgb(221, 221, 221);
     background-color: white;
@@ -69,6 +72,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateX(80%);
 }
 
 .fav-counter {
@@ -84,13 +88,15 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateX(-80%);
 }
 
 .navbar-icon {
     color: black !important;
 }
 
-.link-info {
+.link-info-box:hover {
+    border: 1px solid grey;
 }
 
 .vcenter {
@@ -114,4 +120,14 @@ a {
 .row.is-flex > [class*='col-'] {
     display: flex;
     flex-direction: column;
+}
+
+.form-post {
+}
+
+.form-post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh
 }
