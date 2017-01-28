@@ -139,3 +139,14 @@ a {
     align-items: center;
     height: 60vh
 }
+
+.banner {
+    width: 50vw;
+    height: 50vh;
+}
+
+.banner-image {
+    object-fit: cover !important;
+    width: 50vw;
+    height: 50vh;
+}
