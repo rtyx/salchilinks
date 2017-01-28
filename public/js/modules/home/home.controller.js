@@ -53,13 +53,45 @@
             };
             $http(config).then(function(res) {
                 if (res.data.success) {
+                    $('#' + id).css('color', '#DC6F2A');
                     vm.data[index].favs += 1;
                 } else {
                     console.log(res.data.reason);
                 }
             });
-
         }
+
+        vm.getUserFavs = getUserFavs;
+
+        function getUserFavs() {
+            console.log("Getting user favs...");
+            var config = {
+                method: 'GET',
+                data: {
+                },
+                url: '/favs'
+            };
+            $http(config).then(function(res) {
+                if (res.data.success) {
+                    var userFaved = [];
+                    function getFavsId() {
+                        res.data.favs.map(function (fav) {
+                            return userFaved.push(parseInt(fav.link_id));
+                        });
+                    }
+                    getFavsId();
+                    $('.star').each(function() {
+                        if ($.inArray(parseInt($(this)[0].id), userFaved) > -1) {
+                            $(this).css('color', '#DC6F2A');
+                        }
+                    });
+                } else {
+                    console.log(res.data.reason);
+                }
+            });
+        }
+
+        vm.getUserFavs();
 
         // $http(config).then(function() {
         //     vm.data.find(function(item) {

@@ -38,6 +38,24 @@ router.route('/home')
     });
 });
 
+router.route('/favs')
+.get(function(req, res) {
+    aux.getUserFavs(req.session.user.id)
+    .then(function(response) {
+        res.json({
+            success: true,
+            user: req.session.user,
+            favs: response.rows});
+    })
+    .catch(function(error) {
+        console.log(errstyle(error));
+        res.json({
+            success: false,
+            reason: "Something went wrong!"
+        });
+    });
+});
+
 router.route('/register')
 .get(function(req, res) {
     res.json(req.session.user);

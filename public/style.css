@@ -41,7 +41,8 @@ a {
 }
 
 .glyphicon-star {
-    color: #DC6F2A !important;
+    color: grey;
+    /*color: #DC6F2A !important;*/
 }
 
 .ogimage {

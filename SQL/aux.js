@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const error = chalk.bold.red;
+// const error = chalk.bold.red;
 const db = require('./db.js');
 const hash = require('./hash.js');
 const parser = require('./parser.js');
@@ -103,5 +103,9 @@ module.exports = {
         then(function() {
             return db.usedb('UPDATE links SET favs = favs + 1 WHERE id = $1', [linkId]);
         });
+    },
+    getUserFavs: function(userId) {
+        console.log(chalk.blue("Fetching user " + userId + " favourite links..."));
+        return db.usedb('SELECT * FROM favs WHERE user_id = $1 ORDER BY creation_date DESC;', [userId]);
     }
 };
