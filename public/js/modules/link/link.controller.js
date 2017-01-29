@@ -29,7 +29,7 @@
 
             vm.title = resp.data.title;
             vm.url = resp.data.url;
-            vm.date = resp.data.date;
+            vm.creation_date = resp.data.date;
             vm.user = resp.data.user;
             vm.ogimage = resp.data.ogimage;
             vm.ogtitle = resp.data.ogtitle;
@@ -61,7 +61,7 @@
 
             function showReplyBox(id) {
                 console.log("Replying comment " + id + "...");
-                $('#replyBox_' + id).css('display', 'block');
+                $('#replyBox_' + id).removeClass('hidden');
             }
 
             vm.showReplies = showReplies;
@@ -82,6 +82,39 @@
                     console.log(resp.data.replies);
                 });
             }
+
+            vm.getUserFavs = getUserFavs;
+
+            function getUserFavs() {
+                console.log("Getting user favs...");
+                var config = {
+                    method: 'GET',
+                    data: {
+                    },
+                    url: '/favs'
+                };
+                $http(config).then(function(res) {
+                    console.log(res.data);
+                    if (res.data.success) {
+                        var userFaved = [];
+                        function getFavsId() {
+                            res.data.favs.map(function (fav) {
+                                return userFaved.push(parseInt(fav.link_id));
+                            });
+                        }
+                        getFavsId();
+                        $('.star').each(function() {
+                            if ($.inArray(parseInt($stateParams.id), userFaved) > -1) {
+                                $(this).css('color', '#DC6F2A');
+                            }
+                        });
+                    } else {
+                        console.log(res.data.reason);
+                    }
+                });
+            }
+
+            vm.getUserFavs();
         });
     }
 })();

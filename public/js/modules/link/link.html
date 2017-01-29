@@ -5,7 +5,7 @@
 <div class="row is-flex">
 	<div class="col-sm-2 vcenter link-counter-box">
 	</div>
-	<li href="{{link.url}}" class="link-info-box list-group-item col-sm-8">
+	<li href="{{link.url}}" class="list-group-item col-sm-8">
 		<div class="link-info">
 			<div class="media">
 				<div class="media-left ogimage-container">
@@ -40,9 +40,9 @@
 </div>
 <br>
 <div class="row is-flex">
-	<div class="col-sm-2 vcenter link-counter-box">
+	<div class="col-sm-2">
 	</div>
-	<li class="link-info-box list-group-item col-sm-8">
+	<li class="list-group-item col-sm-8">
 		<div class="comment-container">
 			<div class="display-comments">
 				<div class="input-group">
@@ -52,47 +52,55 @@
 					</span>
 				</div>
 				<br>
-				<div class="info" ng-repeat="comment in link.comments">
-					<div id="user-name"> {{comment.creation_date | timeago}}  <a href="#/profile?user={{comment.user_name}}"> {{comment.user_name}} </a> said... </div>
-					<div class="panel panel-default">
-						<div class="panel-body">
-							{{comment.comment}}
-						</div>
-						<!-- <button type="submit" class="btn btn-default pull-right" ng-click="link.showReplyBox(comment.id)">Reply</button> -->
-						<!-- <button type="submit" class="btn btn-default pull-right" ng-click="link.showReplies($index, comment.id)">Show replies</button> -->
-					</div>
-					<!-- <div class="hidden replyBox" id="replyBox_{{comment.id}}">
-						<textarea ng-model="link.reply" id="comment-add">Reply</textarea>
-						<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.reply, comment.id)">Submit</button>
-					</div> -->
-					<!-- <div class="replies" id="repliesBox_{{comment.id}}" >
-						<div id="user-name"> {{comment.creation_date | timeago}}  <a href="#/profile?user={{comment.user_name}}"> {{comment.user_name}} </a> said... </div>
-						<div class="panel panel-default">
-							<div class="panel-body">
-								{{comment.comment}}
-							</div>
-							<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplyBox(comment.id)">Reply</button>
-							<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplies($index, comment.id)">Show replies</button>
-						</div>
-						<div class="hidden replyBox" id="replyBox_{{comment.id}}">
-							<textarea ng-model="link.reply" id="comment-add">Reply</textarea>
-							<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.reply, comment.id)">Submit</button>
-						</div>
-						<div class="info-content-comment" ng-repeat="reply in comment.replies">
-							<div id="user-name"> {{reply.creation_date | timeago}}  <a href="#/profile?user={{comment.user_name}}"> {{reply.user_name}} </a> said... </div>
+				<div class="info comments-container" ng-repeat="comment in link.comments">
+					<div class="">
+						<div class="">
+							<div> {{comment.creation_date | timeago}}  <a href="#/profile?user={{comment.user_name}}"> {{comment.user_name}} </a> said... </div>
 							<div class="panel panel-default">
 								<div class="panel-body">
-									{{reply.comment}}
+									{{comment.comment}}
 								</div>
-								<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplyBox(reply.id)">Reply</button>
-								<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplies($index, reply.id)">Show replies</button>
+							</div>
+							<!-- <div class="buttons">
+								<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplyBox(comment.id)">Reply</button>
+								<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplies($index, comment.id)">Show replies</button>
+							</div> -->
+						</div>
+
+						<!-- <div class="hidden" id="replyBox_{{comment.id}}">
+							<div class="input-group">
+								<input ng-model="link.reply" type="text" class="form-control" placeholder="Reply...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit" ng-click="link.postComment(link.reply, comment.id)">Reply!</button>
+								</span>
 							</div>
 						</div>
-					</div> -->
+
+						<div class="replies replies-container" id="repliesBox_{{comment.id}}">
+							<div class="">
+								<div class="hidden reply-input-box" id="replyBox_{{comment.id}}">
+									<textarea ng-model="link.reply" id="comment-add">Reply</textarea>
+									<button id="add-comment-submit" type="submit" ng-click="link.postComment(link.reply, comment.id)">Submit</button>
+								</div>
+								<div class="info-content-comment reply-box" ng-repeat="reply in comment.replies">
+									<div> {{reply.creation_date | timeago}}  <a href="#/profile?user={{comment.user_name}}"> {{reply.user_name}} </a> replied... </div>
+									<div class="panel panel-default">
+										<div class="panel-body">
+											{{reply.comment}}
+										</div>
+									</div>
+									<div class="buttons">
+										<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplyBox(reply.id)">Reply</button>
+										<button type="submit" class="btn btn-default pull-right" ng-click="link.showReplies($index, reply.id)">Show replies</button>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
 	</li>
-	<div class="col-sm-2 vcenter link-counter-box">
+	<div class="col-sm-2">
 	</div>
 </div>

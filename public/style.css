@@ -150,3 +150,18 @@ a {
     width: 50vw;
     height: 50vh;
 }
+
+.reply-box {
+    width: 75%;
+    float: right;
+}
+
+.comments-container {
+    margin-bottom: 42px;
+}
+
+.buttons {
+}
+
+.replies-container {
+}
