@@ -42,10 +42,17 @@ router.route('/favs')
 .get(function(req, res) {
     aux.getUserFavs(req.session.user.id)
     .then(function(response) {
+        var userFaved = [];
+        function getFavsId() {
+            response.rows.map(function (fav) {
+                return userFaved.push(parseInt(fav.link_id));
+            });
+        }
+        getFavsId();
         res.json({
             success: true,
             user: req.session.user,
-            favs: response.rows});
+            favs: userFaved});
     })
     .catch(function(error) {
         console.log(errstyle(error));
@@ -270,10 +277,11 @@ router.route('/fav')
     var linkId = req.body.linkId;
     var userId = req.session.user.id;
     aux.favLink(userId, linkId)
-    .then(function() {
+    .then(function(response) {
         console.log("Done!");
         res.json({
-            success: true
+            success: true,
+            favs: response.rows[0].favs
         });
     })
     .catch(function(error) {

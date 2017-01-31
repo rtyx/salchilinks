@@ -1,115 +1,58 @@
 (function() {
     angular
     .module("app.home")
-    .controller("homeCtrl", homeControl);
+    .controller("homeCtrl", ['homeService', function (homeService) {
+        var home = this;
 
-    homeControl.$inject = ['$http', '$state'];
-
-    function homeControl($http) {
-        var vm = this;
-
-        vm.options = [{
-            id: "1",
-            name: 'most recent',
-            value: '-creation_date'
-        }, {
-            id: "2",
-            name: 'most popular',
-            value: '-favs'
-        }];
-
-        vm.changeOrder = function(val) {
-            console.log(val);
-            vm.order = val;
+        home.loadHome = function() { homeService.loadHome()
+            .then(function(data) {
+                home.data = data.links;
+                if (data.user) {
+                    home.activeUser = data.user.name;
+                } else {
+                    home.activeUser = false;
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
         };
 
-        vm.loadHome = loadHome;
+        home.loadHome();
 
-        function loadHome() {
-            $http.get('/home?' + Date.now()).then(function(resp) {
-                console.log(resp.data);
-                if (resp.data.user) {
-                    $('#greeting').css('display', 'block');
-                    vm.activeUser = resp.data.user.name;
+        home.favLink = function(id, index) { homeService.favLink(id)
+            .then(function(data) {
+                console.log(data);
+                if (data.success) {
+                    home.data[index].starred = true;
+                    home.data[index].favs = data.favs;
                 } else {
-                    vm.activeUser = " ";
+                    console.log(data.reason);
                 }
-                vm.data = resp.data.links;
+            })
+            .catch(function(err) {
+                console.log(err);
             });
-        }
+        };
 
-        vm.loadHome();
-
-        vm.fav = favLink;
-
-        function favLink(id, index) {
-            console.log("Faving link...");
-            var config = {
-                method: 'POST',
-                data: {
-                    linkId: id
-                },
-                url: '/fav'
-            };
-            $http(config).then(function(res) {
-                if (res.data.success) {
-                    $('#' + id).css('color', '#DC6F2A');
-                    vm.data[index].favs += 1;
-                } else {
-                    console.log(res.data.reason);
-                }
-            });
-        }
-
-        vm.getUserFavs = getUserFavs;
-
-        function getUserFavs() {
-            console.log("Getting user favs...");
-            var config = {
-                method: 'GET',
-                data: {
-                },
-                url: '/favs'
-            };
-            $http(config).then(function(res) {
-                if (res.data.success) {
-                    var userFaved = [];
-                    function getFavsId() {
-                        res.data.favs.map(function (fav) {
-                            return userFaved.push(parseInt(fav.link_id));
-                        });
-                    }
-                    getFavsId();
-                    $('.star').each(function() {
-                        if ($.inArray(parseInt($(this)[0].id), userFaved) > -1) {
-                            $(this).css('color', '#DC6F2A');
+        home.getUserFavs = function() { homeService.getUserFavs()
+            .then(function(data) {
+                if (data.success) {
+                    var favs = data.favs; //this is an array with all the user's favourite links (their id)
+                    for (var i = 0; i < home.data.length; i++) { //this iterates through all the links currently shown
+                        if (favs.indexOf(home.data[i].id) > -1) { //and checks wether they belong to the user's favourites or not
+                            home.data[i].starred = true; //if they are part of his favourites, they're flagged
                         }
-                    });
+                    }
                 } else {
-                    console.log(res.data.reason);
+                    console.log(data.reason);
                 }
+            })
+            .catch(function(err) {
+                console.log(err);
             });
-        }
+        };
 
-        vm.getUserFavs();
-
-        // $http(config).then(function() {
-        //     vm.data.find(function(item) {
-        //         return item.id == id;
-        //     });
-
-        // vm.favLink = favLink;
-
-        // function favLink(linkId, userId) {
-        //
-        // }
-
-        // vm.activeLink = {};
-        // vm.changeActiveLink = changeActiveLink;
-        //
-        // function changeActiveLink(index) {
-        //     vm.activeLink = index;
-        //     console.log(index);
-        // }
-    }
+        home.getUserFavs();
+    }]);
 })();

@@ -2,19 +2,13 @@
 
 </div>
 
-
-<div id="greeting" class="row">
+<div ng-show="home.activeUser" id="greeting" class="row">
     <div class="col-sm-2">
     </div>
     <div class="panel panel-default col-sm-8">
         <div class="panel-body">
-            Hi <a href="#/profile?user={{home.activeUser}}">{{home.activeUser}}</a>
+            Hi <a ui-sref="profile({user: activeUser})">{{home.activeUser}}</a>
         </div>
-        <!-- <div class="panel-footer">
-            Order by
-            <button ng-click="home.changeOrder('-creation_date')" type="button" name="button" class="btn">Most recent</button>
-            <button ng-click="home.changeOrder('-favs')" type="button" name="button" class="btn">Most popular</button>
-        </div> -->
     </div>
     <div class="col-sm-2">
     </div>
@@ -41,9 +35,9 @@
                         <br>
                         {{link.creation_date | timeago}}
                         <br>
-                        {{link.comments}} <a href="#/link?id={{link.id}}">comments</a>
+                        {{link.comments}} <a ui-sref="link({id: link.id})">comments</a>
                         <br>
-                        {{link.favs}} <a href="#/link?id={{link.id}}">stars</a>.
+                        <span ng-bind="link.favs"></span> <a ui-sref="link({id: link.id})">stars</a>.
                         <br>
                         <h6 class="errorMessage">
                             {{link.errmessage}}
@@ -53,9 +47,9 @@
             </div>
         </li>
         <div class="col-sm-2 vcenter link-counter-box">
-            <div ng-click="home.fav(link.id, $index)" class="fav-box">
+            <div ng-click="home.favLink(link.id, $index)" class="fav-box">
                 <p class="fav-counter">
-                    <span id="{{link.id}}" class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                    <span id="{{link.id}}" class="glyphicon glyphicon-star star" ng-class="{orange: link.starred == true}" aria-hidden="true"></span>
                 </p>
             </div>
         </div>

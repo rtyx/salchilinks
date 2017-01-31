@@ -101,7 +101,7 @@ module.exports = {
         console.log(chalk.blue("Adding link " + linkId + " in " + userId + " favourites..."));
         return db.usedb('INSERT INTO favs (user_id, link_id) VALUES ($1, $2) RETURNING id', [userId, linkId]).
         then(function() {
-            return db.usedb('UPDATE links SET favs = favs + 1 WHERE id = $1', [linkId]);
+            return db.usedb('UPDATE links SET favs = favs + 1 WHERE id = $1 RETURNING favs', [linkId]);
         });
     },
     getUserFavs: function(userId) {

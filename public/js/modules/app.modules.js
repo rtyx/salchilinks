@@ -9,10 +9,11 @@
             'ngtimeago',
 
             // Custom modules.
+            // 'app.common',
+            'app.home',
             'app.link',
             'app.router',
             'app.post',
-            'app.home',
             'app.register',
             'app.login',
             'app.profile',

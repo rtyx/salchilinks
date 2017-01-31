@@ -2,20 +2,20 @@
 <!-- <input ng-model="post.csrfToken" type="hidden" name="_csrf" value="{{post.csrfToken}}"> -->
 
 <div class="form-post-container">
-    <form class="form-horizontal">
+    <form class="form-horizontal" name="post.submitForm" ng-submit="post.postLink(post.url, post.title)">
         <div class="form-group">
             <div class="col-sm-12">
-                <input ng-model="post.url" type="text" class="form-control" placeholder="URL" aria-describedby="sizing-addon2">
+                <input ng-model="post.url" required="true" type="text" class="form-control" placeholder="URL" aria-describedby="sizing-addon2">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <input ng-model="post.title" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2">
+                <input ng-model="post.title" required="true" type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" ng-click="post.postLink(post.url, post.title)" class="btn btn-default">Submit</button>
+                <button type="submit"  class="btn btn-default">Submit</button>
             </div>
         </div>
         <div class="form-group">

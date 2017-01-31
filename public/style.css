@@ -62,8 +62,8 @@ a {
     align-items: center;
 }
 
-#greeting {
-    display: none;
+.orange {
+    color: #DC6F2A;
 }
 
 .link-counter {
