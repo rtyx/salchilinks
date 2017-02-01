@@ -17,6 +17,13 @@
                 controllerAs: 'home'
             })
 
+            .state('greeting', {
+                url: '/greeting',
+                templateUrl: 'js/modules/greeting/greeting.html',
+                controller: 'greetingCtrl',
+                controllerAs: 'greeting'
+            })
+
             .state('register', {
                 url: '/register',
                 templateUrl: 'js/modules/register/register.html',

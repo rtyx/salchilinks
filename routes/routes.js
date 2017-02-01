@@ -26,7 +26,6 @@ router.route('/home')
     aux.getLinks(30)
     .then(function(response) {
         res.json({
-            user: req.session.user,
             links: response.rows});
     })
     .catch(function(error) {
@@ -35,6 +34,13 @@ router.route('/home')
             success: false,
             reason: "Something went wrong!"
         });
+    });
+});
+
+router.route('/user')
+.get(function(req, res) {
+    res.json({
+        user: req.session.user,
     });
 });
 

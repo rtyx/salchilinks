@@ -9,7 +9,13 @@
         }
 
         service.loadHome = function() { //loads the last posted links
-            return $http.get('/home?' + Date.now())
+            var config = {
+                method: 'GET',
+                data: {
+                },
+                url: '/home?' + Date.now()
+            };
+            return $http(config)
             .then(extract);
         };
 

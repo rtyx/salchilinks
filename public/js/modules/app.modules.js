@@ -11,6 +11,7 @@
             // Custom modules.
             // 'app.common',
             'app.home',
+            'app.greeting',
             'app.link',
             'app.router',
             'app.post',

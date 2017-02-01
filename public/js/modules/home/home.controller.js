@@ -7,11 +7,6 @@
         home.loadHome = function() { homeService.loadHome()
             .then(function(data) {
                 home.data = data.links;
-                if (data.user) {
-                    home.activeUser = data.user.name;
-                } else {
-                    home.activeUser = false;
-                }
             })
             .catch(function(err) {
                 console.log(err);

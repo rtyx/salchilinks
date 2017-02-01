@@ -2,7 +2,11 @@
 
 </div>
 
-<div ng-show="home.activeUser" id="greeting" class="row">
+<div greeting>
+
+</div>
+
+<!-- <div ng-show="home.activeUser" id="greeting" class="row">
     <div class="col-sm-2">
     </div>
     <div class="panel panel-default col-sm-8">
@@ -12,7 +16,7 @@
     </div>
     <div class="col-sm-2">
     </div>
-</div>
+</div> -->
 
 <ul class="list-group" ng-repeat="link in home.data | filter: searchLink | orderBy: home.order">
     <div class="row is-flex">
