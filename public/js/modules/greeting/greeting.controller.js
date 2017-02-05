@@ -18,5 +18,7 @@
             });
         };
 
+        greeting.loadUser();
+
     }]);
 })();

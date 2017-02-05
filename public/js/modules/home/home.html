@@ -2,21 +2,9 @@
 
 </div>
 
-<div greeting>
+<greeting>
 
-</div>
-
-<!-- <div ng-show="home.activeUser" id="greeting" class="row">
-    <div class="col-sm-2">
-    </div>
-    <div class="panel panel-default col-sm-8">
-        <div class="panel-body">
-            Hi <a ui-sref="profile({user: activeUser})">{{home.activeUser}}</a>
-        </div>
-    </div>
-    <div class="col-sm-2">
-    </div>
-</div> -->
+</greeting>
 
 <ul class="list-group" ng-repeat="link in home.data | filter: searchLink | orderBy: home.order">
     <div class="row is-flex">
@@ -35,7 +23,7 @@
                         <h4 class="media-heading">
                             <a href="{{link.url}}">{{link.title}}</a>
                         </h4>
-                        Posted by <a href="#/profile?user={{link.user_name}}">{{link.user_name}}</a>
+                        Posted by <a ui-sref="profile({user: user_name})">{{link.user_name}}</a>
                         <br>
                         {{link.creation_date | timeago}}
                         <br>
